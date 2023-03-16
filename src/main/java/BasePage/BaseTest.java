@@ -2,7 +2,7 @@ package BasePage;
 
 import org.testng.annotations.BeforeTest;
 
-import static Config.Config.BASE_URI;
+import static Config.Config.*;
 import static io.restassured.RestAssured.baseURI;
 
 public class BaseTest {

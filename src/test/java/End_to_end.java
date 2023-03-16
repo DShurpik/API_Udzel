@@ -4,30 +4,22 @@ import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import static Config.Config.*;
+import static Config.Get_token.getToken;
 import static io.restassured.RestAssured.given;
 
 public class End_to_end extends BaseTest {
 
-    private String access_token;
-
-    public String getAccess_token() {
-        return access_token;
-    }
-
-    public void setAccess_token(String access_token) {
-        this.access_token = access_token;
-    }
-
     @Test(priority = 1)
     public void create_user() {
         String body = "{\n" +
-                "  \"email\": \"ds11@example.com\",\n" +
-                "  \"username\": \"damavik\",\n" +
-                "  \"password\": \"d2918363\"\n" +
+                "  \"email\": \"" + EMAIL + "\",\n" +
+                "  \"username\": \"" + USERNAME + "\",\n" +
+                "  \"password\": \"" + PASSWORD + "\"\n" +
                 "}";
 
-        Response response = given().
-                header("Content-Type", "application/json")
+        Response response = given()
+                .contentType(ContentType.JSON)
                 .body(body)
                 .post("users/");
 
@@ -42,28 +34,11 @@ public class End_to_end extends BaseTest {
     }
 
     @Test(priority = 2)
-    public void get_token() {
-        String body = "{\n" +
-                "  \"email\": \"ds11@example.com\",\n" +
-                "  \"password\": \"d2918363\"\n" +
-                "}";
-
-        Response response = given()
-                .header("Content-Type", "application/json")
-                .body(body)
-                .post("jwt/create/");
-
-        response.then().log().all().statusCode(200);
-
-        setAccess_token(response.then().extract().response().jsonPath().getString("access"));
-    }
-
-    @Test(priority = 3)
     public void user_info_me() {
-        System.out.println(getAccess_token());
+        System.out.println(getToken());
 
         Response response = given()
-                .header("Authorization" , "Token " + getAccess_token())
+                .header("Authorization" , "Token " + getToken())
                 .when()
                 .get("users/me/");
 
@@ -77,15 +52,15 @@ public class End_to_end extends BaseTest {
 
     }
 
-    @Test(priority = 4)
+    @Test(priority = 3)
     public void delete_me() {
         String body = "{\n" +
-                "    \"current_password\" : \"d2918363\"\n" +
+                "    \"current_password\" : \"" + PASSWORD + "\"\n" +
                 "}";
 
         Response response = given()
                 .contentType(ContentType.JSON)
-                .header("Authorization", "Token " + getAccess_token())
+                .header("Authorization", "Token " + getToken())
                 .body(body)
                 .when()
                 .delete("users/me/");
