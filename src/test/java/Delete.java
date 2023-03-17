@@ -4,7 +4,6 @@ import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
 import static Config.Config.*;
-import static Config.Get_token.getToken;
 import static io.restassured.RestAssured.given;
 
 public class Delete extends BaseTest {

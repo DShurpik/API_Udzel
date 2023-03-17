@@ -5,10 +5,9 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static Config.Config.*;
-import static Config.Get_token.getToken;
 import static io.restassured.RestAssured.given;
 
-public class End_to_end extends BaseTest {
+public class End_to_end_hardcode extends BaseTest {
 
     @Test(priority = 1)
     public void create_user() {
