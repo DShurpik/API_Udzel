@@ -29,11 +29,9 @@ public class End_to_end_from_json extends BaseTest {
     @Test(priority = 2)
     public void user_info_me() {
 
-        String email = parser("1_test_create").get("email").getAsString();
-        String password = parser("1_test_create").get("password").getAsString();
-
         Response response = given()
-                .header("Authorization" , "Token " + getToken(email, password))
+                .header("Authorization" , "Token "
+                        + getToken(getEmail("1_test_create"), getPassword("1_test_create")))
                 .when()
                 .get("users/me/");
 
@@ -50,16 +48,14 @@ public class End_to_end_from_json extends BaseTest {
     @Test(priority = 3)
     public void delete_me() {
 
-        String email = parser("1_test_create").get("email").getAsString();
-        String password = parser("1_test_create").get("password").getAsString();
-
         String body = "{\n" +
-                "    \"current_password\" : \"" + password + "\"\n" +
+                "    \"current_password\" : \"" + getPassword("1_test_create") + "\"\n" +
                 "}";
 
         Response response = given()
                 .contentType(ContentType.JSON)
-                .header("Authorization", "Token " + getToken(email, password))
+                .header("Authorization", "Token "
+                        + getToken(getEmail("1_test_create"), getPassword("1_test_create")))
                 .body(body)
                 .when()
                 .delete("users/me/");

@@ -60,6 +60,14 @@ public class BaseTest {
         return jsonObject;
     }
 
+    public String getEmail(String fileName) {
+        return parser(fileName).get("email").getAsString();
+    }
+
+    public String getPassword(String fileName) {
+        return parser(fileName).get("password").getAsString();
+    }
+
     public String getJson(String fileName){
         try {
             return new String(Files.readAllBytes(Paths.get("src/test/resources/" + fileName + ".json")));
