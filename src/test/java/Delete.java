@@ -9,7 +9,7 @@ import static io.restassured.RestAssured.given;
 public class Delete extends BaseTest {
 
     @Test
-    public void delete_me() {
+    public void deleteMe() {
         String body = "{\n" +
                 "    \"current_password\" : \"" + PASSWORD + "\"\n" +
                 "}";

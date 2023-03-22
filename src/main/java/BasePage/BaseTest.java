@@ -5,7 +5,6 @@ import com.google.gson.JsonParser;
 import io.restassured.response.Response;
 import org.testng.annotations.BeforeTest;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;

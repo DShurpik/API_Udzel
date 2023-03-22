@@ -10,7 +10,7 @@ import static io.restassured.RestAssured.given;
 public class Create extends BaseTest {
 
     @Test
-    public void create_user() {
+    public void createUser() {
         String body = "{\n" +
                 "  \"email\": \"" + EMAIL + "\",\n" +
                 "  \"username\": \"" + USERNAME + "\",\n" +

@@ -7,10 +7,10 @@ import org.testng.annotations.Test;
 import static Config.Config.*;
 import static io.restassured.RestAssured.given;
 
-public class End_to_end_hardcode extends BaseTest {
+public class EndToEndHardcode extends BaseTest {
 
     @Test(priority = 1)
-    public void create_user() {
+    public void createUser() {
         String body = "{\n" +
                 "  \"email\": \"" + EMAIL + "\",\n" +
                 "  \"username\": \"" + USERNAME + "\",\n" +
@@ -33,7 +33,7 @@ public class End_to_end_hardcode extends BaseTest {
     }
 
     @Test(priority = 2)
-    public void user_info_me() {
+    public void userInfoMe() {
         System.out.println(getToken());
 
         Response response = given()
@@ -52,7 +52,7 @@ public class End_to_end_hardcode extends BaseTest {
     }
 
     @Test(priority = 3)
-    public void delete_me() {
+    public void deleteMe() {
         String body = "{\n" +
                 "    \"current_password\" : \"" + PASSWORD + "\"\n" +
                 "}";

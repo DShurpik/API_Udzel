@@ -1,6 +1,6 @@
 import BasePage.BaseTest;
-import Entity.Request.User_request_for_create;
-import Entity.Request.User_request_for_info;
+import Entity.Request.UserRequestForCreate;
+import Entity.Request.UserRequestForInfo;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.Assert;
@@ -8,12 +8,12 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class End_to_end_from_pojo extends BaseTest {
+public class EndToEndFromPojo extends BaseTest {
 
     @Test(priority = 1)
-    public void create_user() {
+    public void createUser() {
 
-        User_request_for_create new_user = new User_request_for_create(){{
+        UserRequestForCreate newUser = new UserRequestForCreate(){{
             setEmail("ds11@example.com");
             setUsername("damavik");
             setPassword("d2918363");
@@ -21,7 +21,7 @@ public class End_to_end_from_pojo extends BaseTest {
 
         Response response = given()
                 .contentType(ContentType.JSON)
-                .body(new_user)   // Подставляем в body объект класса User_request_for_create
+                .body(newUser)   // Подставляем в body объект класса User_request_for_create
                 .post("users/");
 
         response.then().log().all().statusCode(201);
@@ -35,20 +35,20 @@ public class End_to_end_from_pojo extends BaseTest {
     }
 
     @Test(priority = 2)
-    public void user_info_me() {
+    public void userInfoMe() {
 
-        User_request_for_info new_user_for_info = new User_request_for_info(){{
+        UserRequestForInfo newUserForInfo = new UserRequestForInfo(){{
             setEmail("ds11@example.com");
             setPassword("d2918363");
         }};
 
-        System.out.println(new_user_for_info.getEmail());
-        System.out.println(new_user_for_info.getPassword());
+        System.out.println(newUserForInfo.getEmail());
+        System.out.println(newUserForInfo.getPassword());
 
         Response response = given()
                 .header("Authorization" , "Token "
-                        + getToken(new_user_for_info.getEmail(),
-                        new_user_for_info.getPassword()))
+                        + getToken(newUserForInfo.getEmail(),
+                        newUserForInfo.getPassword()))
                 .when()
                 .get("users/me/");
 
@@ -63,26 +63,26 @@ public class End_to_end_from_pojo extends BaseTest {
     }
 
     @Test(priority = 3)
-    public void delete_me() {
+    public void deleteMe() {
 
-        User_request_for_create new_user_for_delete = new User_request_for_create(){{
+        UserRequestForCreate newUserForDelete = new UserRequestForCreate(){{
             setPassword("d2918363");
         }};
 
-        User_request_for_create new_user_for_token = new User_request_for_create(){{
+        UserRequestForCreate newUserForToken = new UserRequestForCreate(){{
             setEmail("ds11@example.com");
             setPassword("d2918363");
         }};
 
         String body = "{\n" +
-                "    \"current_password\" : \"" + new_user_for_delete.getPassword() + "\"\n" +
+                "    \"current_password\" : \"" + newUserForDelete.getPassword() + "\"\n" +
                 "}";
 
         Response response = given()
                 .contentType(ContentType.JSON)
                 .header("Authorization", "Token "
-                        + getToken(new_user_for_token.getEmail(),
-                        new_user_for_token.getPassword()))
+                        + getToken(newUserForToken.getEmail(),
+                        newUserForToken.getPassword()))
                 .body(body)
                 .when()
                 .delete("users/me/");

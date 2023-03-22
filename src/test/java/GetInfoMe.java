@@ -5,10 +5,10 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class Get_info_me extends BaseTest {
+public class GetInfoMe extends BaseTest {
 
     @Test
-    public void user_info_me() {
+    public void userInfoMe() {
         System.out.println(getToken());
 
         Response response = given()

@@ -6,14 +6,14 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class End_to_end_from_json extends BaseTest {
+public class EndToEndFromJson extends BaseTest {
 
     @Test(priority = 1)
-    public void create_user() {
+    public void createUser() {
 
         Response response = given()
                 .contentType(ContentType.JSON)
-                .body(getJson("1_test_create"))   // Подставляем в body json from resources
+                .body(getJson("testCreateUser"))   // Подставляем в body json from resources
                 .post("users/");
 
         response.then().log().all().statusCode(201);
@@ -27,11 +27,11 @@ public class End_to_end_from_json extends BaseTest {
     }
 
     @Test(priority = 2)
-    public void user_info_me() {
+    public void userInfoMe() {
 
         Response response = given()
                 .header("Authorization" , "Token "
-                        + getToken(getEmail("1_test_create"), getPassword("1_test_create")))
+                        + getToken(getEmail("testCreateUser"), getPassword("testCreateUser")))
                 .when()
                 .get("users/me/");
 
@@ -46,16 +46,16 @@ public class End_to_end_from_json extends BaseTest {
     }
 
     @Test(priority = 3)
-    public void delete_me() {
+    public void deleteMe() {
 
         String body = "{\n" +
-                "    \"current_password\" : \"" + getPassword("1_test_create") + "\"\n" +
+                "    \"current_password\" : \"" + getPassword("testCreateUser") + "\"\n" +
                 "}";
 
         Response response = given()
                 .contentType(ContentType.JSON)
                 .header("Authorization", "Token "
-                        + getToken(getEmail("1_test_create"), getPassword("1_test_create")))
+                        + getToken(getEmail("testCreateUser"), getPassword("testCreateUser")))
                 .body(body)
                 .when()
                 .delete("users/me/");
