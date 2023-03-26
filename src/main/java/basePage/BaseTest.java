@@ -1,4 +1,4 @@
-package BasePage;
+package basePage;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import static Config.Config.*;
+import static config.Config.*;
 import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
 

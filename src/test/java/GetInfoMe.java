@@ -1,4 +1,4 @@
-import BasePage.BaseTest;
+import basePage.BaseTest;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;

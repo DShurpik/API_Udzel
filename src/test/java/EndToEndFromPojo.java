@@ -1,6 +1,6 @@
-import BasePage.BaseTest;
-import Entity.Request.UserRequestForCreate;
-import Entity.Request.UserRequestForInfo;
+import basePage.BaseTest;
+import entity.request.UserRequestForCreate;
+import entity.request.UserRequestForInfo;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.Assert;

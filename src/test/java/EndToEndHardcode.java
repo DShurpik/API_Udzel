@@ -1,10 +1,10 @@
-import BasePage.BaseTest;
+import basePage.BaseTest;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static Config.Config.*;
+import static config.Config.*;
 import static io.restassured.RestAssured.given;
 
 public class EndToEndHardcode extends BaseTest {

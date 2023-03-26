@@ -1,0 +1,38 @@
+{
+  "user1": {
+    "email": "ds@example.com",
+    "username": "damavik",
+    "password": "d2918363"
+  },
+
+  "user2": {
+    "email": "Ds@example.com",
+    "username": "damavik",
+    "password": "d2918363"
+  },
+
+  "user3": {
+    "email": "1s@example.com",
+    "username": "damavik",
+    "password": "d2918363"
+  },
+
+  "user4": {
+    "email": "d.d.s@example.com",
+    "username": "damavik",
+    "password": "d2918363"
+  },
+
+  "user5": {
+    "email": "ds@example.ru.com",
+    "username": "damavik",
+    "password": "d2918363"
+  },
+
+  "user6": {
+    "email": "d-s@example.com",
+    "username": "damavik",
+    "password": "d2918363"
+  }
+
+}

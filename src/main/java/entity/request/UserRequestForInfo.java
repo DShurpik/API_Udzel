@@ -1,4 +1,4 @@
-package Entity.Request;
+package entity.request;
 
 import lombok.Data;
 

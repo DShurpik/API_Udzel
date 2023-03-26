@@ -1,4 +1,5 @@
-import BasePage.BaseTest;
+import basePage.BaseTest;
+import com.google.gson.JsonObject;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.Assert;
@@ -8,7 +9,7 @@ import static io.restassured.RestAssured.given;
 
 public class EndToEndFromJson extends BaseTest {
 
-    @Test(priority = 1)
+    @Test(priority = 1, description = "with lower case email")
     public void createUser() {
 
         Response response = given()
