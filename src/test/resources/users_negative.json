@@ -1,0 +1,38 @@
+{
+  "user1": {
+    "email": "",
+    "username": "damavik",
+    "password": "d2918363"
+  },
+
+  "user2": {
+    "email": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@example.com",
+    "username": "damavik",
+    "password": "d2918363"
+  },
+
+  "user3": {
+    "email": "dsexample.com",
+    "username": "damavik",
+    "password": "d2918363"
+  },
+
+  "user4": {
+    "email": "d..s@example.com",
+    "username": "damavik",
+    "password": "d2918363"
+  },
+
+  "user5": {
+    "email": ".ds@example.com",
+    "username": "damavik",
+    "password": "d2918363"
+  },
+
+  "user6": {
+    "email": "ds@.example.com",
+    "username": "damavik",
+    "password": "d2918363"
+  }
+
+}
