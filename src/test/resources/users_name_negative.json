@@ -1,0 +1,20 @@
+{
+  "user1": {
+    "email": "ds@example.com",
+    "username": "",
+    "password": "dzmitryshurpik"
+  },
+
+  "user2": {
+    "email": "ds@example.com",
+    "username": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddda",
+    "password": "DZMITRYSHURPIK"
+  },
+
+  "user3": {
+    "email": "ds@example.com",
+    "username": "damavik*/#",
+    "password": "DZMITRYshurpik"
+  }
+
+}

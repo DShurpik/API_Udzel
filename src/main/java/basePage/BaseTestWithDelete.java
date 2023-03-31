@@ -26,7 +26,7 @@ public class BaseTestWithDelete {
     }
 
     @AfterMethod
-    public void deleteUSer() {
+    public void deleteUser() {
         String body = "{\n" +
                 "    \"current_password\" : \"" + passwordFor + "\"\n" +
                 "}";

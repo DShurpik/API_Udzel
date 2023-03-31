@@ -7,14 +7,14 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class FromJsonPositive extends BaseTestWithDelete {
+public class EmailPositive extends BaseTestWithDelete {
 
-    JsonObject user1 = parser("users").getAsJsonObject("user1"); // Lower case email
-    JsonObject user2 = parser("users").getAsJsonObject("user2"); // Lower and Upper case email
-    JsonObject user3 = parser("users").getAsJsonObject("user3"); // Starting with number
-    JsonObject user4 = parser("users").getAsJsonObject("user4"); // With several dots, not in a row
-    JsonObject user5 = parser("users").getAsJsonObject("user5"); // With several dots in domain part
-    JsonObject user6 = parser("users").getAsJsonObject("user6"); // With "-" in name part
+    JsonObject user1 = parser("users_email_positive").getAsJsonObject("user1"); // Lower case email
+    JsonObject user2 = parser("users_email_positive").getAsJsonObject("user2"); // Lower and Upper case email
+    JsonObject user3 = parser("users_email_positive").getAsJsonObject("user3"); // Starting with number
+    JsonObject user4 = parser("users_email_positive").getAsJsonObject("user4"); // With several dots, not in a row
+    JsonObject user5 = parser("users_email_positive").getAsJsonObject("user5"); // With several dots in domain part
+    JsonObject user6 = parser("users_email_positive").getAsJsonObject("user6"); // With "-" in name part
 
     @Test(description = "with lower case email")
     public void createUserWithLowerCase() {

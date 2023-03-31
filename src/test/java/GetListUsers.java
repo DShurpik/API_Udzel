@@ -1,6 +1,7 @@
 import basePage.BaseTest;
 import entity.User;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -12,12 +13,15 @@ public class GetListUsers extends BaseTest {
 
     @Test
     public void getUsersList(){
-        List<?> users = given()
+
+        Response response = given()
                 .header("Authorization", "Token " + getToken("elena.kuzheleva.exlab@gmail.com", "qwertyQ1_"))
                 .when()
-                .contentType(ContentType.JSON)
-                .get("users/")
-                .then().log().all().extract().jsonPath().getList("." , User.class);
+                .get("users/");
+
+        response.then().log().all().statusCode(200);
+
+        List<?> users = response.then().extract().jsonPath().getList(".", User.class);
 
         Assert.assertTrue(users.size() > 0,
                 "Don't get users list");

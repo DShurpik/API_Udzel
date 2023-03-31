@@ -1,5 +1,4 @@
 import basePage.BaseTest;
-import basePage.BaseTestWithDelete;
 import com.google.gson.JsonObject;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -8,14 +7,14 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class FromJsonNegative extends BaseTest {
+public class EmailNegative extends BaseTest {
 
-    JsonObject user1 = parser("users_negative").getAsJsonObject("user1"); // empty field
-    JsonObject user2 = parser("users_negative").getAsJsonObject("user2"); // 255 symbols
-    JsonObject user3 = parser("users_negative").getAsJsonObject("user3"); // without @
-    JsonObject user4 = parser("users_negative").getAsJsonObject("user4"); // With ..
-    JsonObject user5 = parser("users_negative").getAsJsonObject("user5"); // Start from .
-    JsonObject user6 = parser("users_negative").getAsJsonObject("user6"); // Domain name starts from .
+    JsonObject user1 = parser("users_email_negative").getAsJsonObject("user1"); // empty field
+    JsonObject user2 = parser("users_email_negative").getAsJsonObject("user2"); // 255 symbols
+    JsonObject user3 = parser("users_email_negative").getAsJsonObject("user3"); // without @
+    JsonObject user4 = parser("users_email_negative").getAsJsonObject("user4"); // With ..
+    JsonObject user5 = parser("users_email_negative").getAsJsonObject("user5"); // Start from .
+    JsonObject user6 = parser("users_email_negative").getAsJsonObject("user6"); // Domain name starts from .
 
     @Test(description = "with empty field email")
     public void createUserWithEmptyFieldEmail() {
