@@ -1,3 +1,5 @@
+package Examples;
+
 import basePage.BaseTest;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;

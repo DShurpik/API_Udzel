@@ -1,0 +1,37 @@
+{
+  "test34" : {
+    "email": ""
+  },
+
+  "test35" : {
+    "email": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@example.com"
+  },
+
+  "test36" : {
+    "email": "SHURPIK_dzmitryexample.com"
+  },
+
+  "test37" : {
+    "email": "SHURPIK.dzmitr..y@example.com"
+  },
+
+  "test38" : {
+    "email": ".SHURPIK_dzmitry@example.com"
+  },
+
+  "test39" : {
+    "email": "SHURPIK_dzmitry@.example.com"
+  },
+
+  "test44" : {
+    "username": ""
+  },
+
+  "test45" : {
+    "username": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+
+  "test46" : {
+    "username": "SHURPIKdzmitry*#"
+  }
+}

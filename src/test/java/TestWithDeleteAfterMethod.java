@@ -12,7 +12,7 @@ public class TestWithDeleteAfterMethod extends BaseTestWithDelete {
 
     @Test
     public void testWithDeleteAfterMethod() {
-        // Create user
+        // Examples.Create user
 
         Response responseCreate = given()
                 .contentType(ContentType.JSON)

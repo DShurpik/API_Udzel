@@ -1,3 +1,5 @@
+package Examples;
+
 import basePage.BaseTest;
 import com.google.gson.JsonObject;
 import io.restassured.http.ContentType;

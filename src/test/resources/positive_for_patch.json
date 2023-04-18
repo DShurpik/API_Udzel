@@ -1,0 +1,41 @@
+{
+  "test34" : {
+    "email": "shurpik_dzmitry@example.com"
+  },
+
+  "test35" : {
+    "email": "SHURPIK_dzmitry@example.com"
+  },
+
+  "test36" : {
+    "email": "1SHURPIK_dzmitry@example.com"
+  },
+
+  "test37" : {
+    "email": "SHURPIK.dzmitr.y@example.com"
+  },
+
+  "test38" : {
+    "email": "SHURPIK_dzmitry@exa.mp.le.com"
+  },
+
+  "test44" : {
+    "username": "SHURPIKdzmitry"
+  },
+
+  "test45" : {
+    "username": "ШурпикДмитрий"
+  },
+
+  "test46" : {
+    "username": "SHURPIKdzmitry1234"
+  },
+
+  "test47" : {
+    "username": "SHURPIK+_-dzmitry."
+  },
+
+  "test48" : {
+    "username": "dzmitry_shurpik@example.com"
+  }
+}

@@ -12,7 +12,6 @@ public class NameNegative extends BaseTest {
     JsonObject user1 = parser("users_name_negative").getAsJsonObject("user1"); // empty field
     JsonObject user2 = parser("users_name_negative").getAsJsonObject("user2"); // 151 symbol
     JsonObject user3 = parser("users_name_negative").getAsJsonObject("user3"); // contains "*/#"
-
     @Test(description = "Empty field")
     public void createUserWithEmptyField() {
 
