@@ -1,0 +1,51 @@
+{
+  "user1" : {
+    "email" : "",
+    "username" : "Shurpik Dzmitry"
+  },
+
+  "user2" : {
+    "email": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@example.com",
+    "username": "Shurpik Dzmitry"
+  },
+
+  "user3" : {
+    "email" : "dsexample.com",
+    "username" : "Shurpik Dzmitry"
+  },
+
+  "user4" : {
+    "email" : "d..s@example.com",
+    "username" : "Shurpik Dzmitry"
+  },
+
+  "user5" : {
+    "email" : ".ds@example.com",
+    "username" : "Shurpik Dzmitry"
+  },
+
+  "user6" : {
+    "email" : "ds@.example.com",
+    "username" : "Shurpik Dzmitry"
+  },
+
+  "user7" : {
+    "email" : "ds.@example.com",
+    "username" : "Shurpik Dzmitry"
+  },
+
+  "user8" : {
+    "email" : "ds@example.com",
+    "username" : ""
+  },
+
+  "user9" : {
+    "email" : "ds@example.com",
+    "username" : "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddda"
+  },
+
+  "user10" : {
+    "email" : "ds@example.com",
+    "username" : "damavik*/#"
+  }
+}

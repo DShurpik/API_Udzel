@@ -1,6 +1,5 @@
 import basePage.BaseTest;
 import entity.User;
-import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -9,7 +8,7 @@ import java.util.List;
 
 import static io.restassured.RestAssured.given;
 
-public class GetListUsers extends BaseTest {
+public class GetListUsersTest extends BaseTest {
 
     @Test
     public void getUsersList(){

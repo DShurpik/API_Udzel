@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class EmailNegative extends BaseTest {
+public class EmailNegativeTest extends BaseTest {
 
     JsonObject user1 = parser("users_email_negative").getAsJsonObject("user1"); // empty field
     JsonObject user2 = parser("users_email_negative").getAsJsonObject("user2"); // 255 symbols

@@ -35,6 +35,8 @@ public class BaseTestForPatch {
                 .post("users/");
 
         response.then().log().all().statusCode(201);
+
+        System.out.println("!!!     USER WAS CREATED IN BEFORE METHOD     !!!");
     }
 
     @AfterMethod

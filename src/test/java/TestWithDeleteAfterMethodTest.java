@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class TestWithDeleteAfterMethod extends BaseTestWithDelete {
+public class TestWithDeleteAfterMethodTest extends BaseTestWithDelete {
     JsonObject user1 = parser("users").getAsJsonObject("user1"); // Lower case email
 
     @Test

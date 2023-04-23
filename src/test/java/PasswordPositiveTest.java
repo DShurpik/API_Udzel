@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class PasswordPositive extends BaseTestWithDelete {
+public class PasswordPositiveTest extends BaseTestWithDelete {
 
     JsonObject user1 = parser("users_password_positive").getAsJsonObject("user1"); // lowerCase letters only >=8 symbols
     JsonObject user2 = parser("users_password_positive").getAsJsonObject("user2"); // UpperCase letters only >=8 symbols

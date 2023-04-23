@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class PatchUsersMeNegative extends BaseTestForPatch {
+public class PatchUsersMeNegativeTest extends BaseTestForPatch {
 
     JsonObject test34 = parser("negative_for_patch").getAsJsonObject("test34");
     JsonObject test35 = parser("negative_for_patch").getAsJsonObject("test35");

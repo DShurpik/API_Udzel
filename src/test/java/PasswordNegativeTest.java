@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class PasswordNegative extends BaseTest {
+public class PasswordNegativeTest extends BaseTest {
 
     JsonObject user1 = parser("users_password_negative").getAsJsonObject("user1"); // 7 symbols
     JsonObject user2 = parser("users_password_negative").getAsJsonObject("user2"); // name + 1

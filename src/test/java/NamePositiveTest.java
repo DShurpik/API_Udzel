@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class NamePositive extends BaseTestWithDelete {
+public class NamePositiveTest extends BaseTestWithDelete {
 
     JsonObject user1 = parser("users_name_positive").getAsJsonObject("user1"); // Uppercase and Lowercase letters
     JsonObject user2 = parser("users_name_positive").getAsJsonObject("user2"); // Cyrillic letters

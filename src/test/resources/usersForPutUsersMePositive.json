@@ -1,0 +1,31 @@
+{
+  "user1" : {
+    "email" : "ds@example.com",
+    "username" : "SHURdzm"
+  },
+
+  "user2" : {
+    "email" : "Ds@example.com",
+    "username" : "shurdzmitr"
+  },
+
+  "user3" : {
+    "email" : "1s@example.com",
+    "username" : "дмитрий"
+  },
+
+  "user4" : {
+    "email" : "d.d.s@example.com",
+    "username" : "damavik12345"
+  },
+
+  "user5" : {
+    "email" : "ds@example.ru.com",
+    "username" : "damavik@+.-_"
+  },
+
+  "user6" : {
+    "email" : "dzmitry-shurpik@example.com",
+    "username" : "dzmitry-shurpik"
+  }
+}

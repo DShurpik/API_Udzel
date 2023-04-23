@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class NameNegative extends BaseTest {
+public class NameNegativeTest extends BaseTest {
 
     JsonObject user1 = parser("users_name_negative").getAsJsonObject("user1"); // empty field
     JsonObject user2 = parser("users_name_negative").getAsJsonObject("user2"); // 151 symbol

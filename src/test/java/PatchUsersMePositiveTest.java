@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class PatchUsersMePositive extends BaseTestForPatch {
+public class PatchUsersMePositiveTest extends BaseTestForPatch {
 
     JsonObject test34 = parser("positive_for_patch").getAsJsonObject("test34"); // lower case email
     JsonObject test35 = parser("positive_for_patch").getAsJsonObject("test35"); // lower case and upper case
