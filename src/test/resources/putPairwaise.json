@@ -1,0 +1,31 @@
+{
+  "user1" : {
+    "email": "ds@example.com",
+    "username": "Dmitry"
+  },
+
+  "user2" : {
+    "email": "ds@example.com",
+    "username": "damavik*/#"
+  },
+
+  "user3" : {
+    "email": "d..s@example.com",
+    "username": "Dmitry"
+  },
+
+  "user4" : {
+    "email": "d..s@example.com",
+    "username": "damavik*/#"
+  },
+
+  "user5" : {
+    "email": "ds@example.com",
+    "username": ""
+  },
+
+  "user6" : {
+    "email": "",
+    "username": "Dmitry"
+  }
+}

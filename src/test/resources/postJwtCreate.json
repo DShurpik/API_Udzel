@@ -1,0 +1,36 @@
+{
+    "user1" : {
+        "email": "dzmitry_shurpik@example.com",
+        "password": "d2918363"
+    },
+
+    "user2" : {
+        "email": "dzmitry_shurpik@example.com",
+        "password": "dd2918363"
+    },
+
+    "user3" : {
+        "email": "dddzmitry_shurpik@example.com",
+        "password": "d2918363"
+    },
+
+    "user4" : {
+        "email": "ddzmitry_shurpik@example.com",
+        "password": "dd2918363"
+    },
+
+    "user5" : {
+        "email": "",
+        "password": "d2918363"
+    },
+
+    "user6" : {
+        "email": "dzmitry_shurpik@example.com",
+        "password": ""
+    },
+
+    "user7" : {
+        "email": "",
+        "password": ""
+    }
+}

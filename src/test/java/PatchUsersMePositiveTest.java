@@ -93,7 +93,7 @@ public class PatchUsersMePositiveTest extends BaseTestForPatch {
 
 
     /** Баг, при  SHURPIK.dzmitr.y@ все ок, при SHURPIK.dzmitry.@ баг**/
-    @Test(description = "with several dots in name part, not in a row", enabled = true)
+    @Test(description = "with several dots in name part, not in a row")
     public void withDots () {
         String token1 = getToken(getEmail("testCreateUser"), getPassword("testCreateUser"));
 

@@ -31,7 +31,7 @@ public class BaseTest {
                 .body(body)
                 .post("jwt/create/");
 
-        response.then().log().all().statusCode(200);
+        response.then().statusCode(200);
 
         return response.then().extract().response().jsonPath().getString("access");
     }
@@ -47,7 +47,7 @@ public class BaseTest {
                 .body(body)
                 .post("jwt/create/");
 
-        response.then().log().all().statusCode(200);
+        response.then().statusCode(200);
 
         return response.then().extract().response().jsonPath().getString("access");
     }
