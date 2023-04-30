@@ -20,6 +20,7 @@ public class BaseTestForPatch {
 
     protected String passwordFor;
     protected String token;
+    protected int id;
     protected JsonObject userForTest = parser("testCreateUser").getAsJsonObject();
 
     @BeforeTest
@@ -35,6 +36,8 @@ public class BaseTestForPatch {
                 .post("users/");
 
         response.then().log().all().statusCode(201);
+
+        id = response.then().extract().response().jsonPath().getInt("id");
 
         System.out.println("!!!     USER WAS CREATED IN BEFORE METHOD     !!!");
     }
