@@ -15,6 +15,8 @@ import static io.restassured.RestAssured.given;
 
 public class BaseTest {
 
+    protected int id;
+
     @BeforeTest
     public void precondition() {
         baseURI = BASE_URI;
