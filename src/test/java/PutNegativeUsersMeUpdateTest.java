@@ -1,8 +1,8 @@
-/*import basePage.BaseTest;
 import basePage.BaseTestForPatch;
-import com.google.gson.JsonObject;
+
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.json.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -10,21 +10,21 @@ import static io.restassured.RestAssured.given;
 
 public class PutNegativeUsersMeUpdateTest extends BaseTestForPatch {
 
-    JsonObject test = parser("testCreateUser").getAsJsonObject();
-    JsonObject test1 = parser("usersForPutUsersMeNegative").getAsJsonObject("user1");
-    JsonObject test2 = parser("usersForPutUsersMeNegative").getAsJsonObject("user2");
-    JsonObject test3 = parser("usersForPutUsersMeNegative").getAsJsonObject("user3");
-    JsonObject test4 = parser("usersForPutUsersMeNegative").getAsJsonObject("user4");
-    JsonObject test5 = parser("usersForPutUsersMeNegative").getAsJsonObject("user5");
-    JsonObject test6 = parser("usersForPutUsersMeNegative").getAsJsonObject("user6");
-    JsonObject test7 = parser("usersForPutUsersMeNegative").getAsJsonObject("user7");
-    JsonObject test8 = parser("usersForPutUsersMeNegative").getAsJsonObject("user8");
-    JsonObject test9 = parser("usersForPutUsersMeNegative").getAsJsonObject("user9");
-    JsonObject test10 = parser("usersForPutUsersMeNegative").getAsJsonObject("user10");
+    JSONObject test = parser("testCreateUser");
+    JSONObject test1 = parser("usersForPutUsersMeNegative").getJSONObject("user1");
+    JSONObject test2 = parser("usersForPutUsersMeNegative").getJSONObject("user2");
+    JSONObject test3 = parser("usersForPutUsersMeNegative").getJSONObject("user3");
+    JSONObject test4 = parser("usersForPutUsersMeNegative").getJSONObject("user4");
+    JSONObject test5 = parser("usersForPutUsersMeNegative").getJSONObject("user5");
+    JSONObject test6 = parser("usersForPutUsersMeNegative").getJSONObject("user6");
+    JSONObject test7 = parser("usersForPutUsersMeNegative").getJSONObject("user7");
+    JSONObject test8 = parser("usersForPutUsersMeNegative").getJSONObject("user8");
+    JSONObject test9 = parser("usersForPutUsersMeNegative").getJSONObject("user9");
+    JSONObject test10 = parser("usersForPutUsersMeNegative").getJSONObject("user10");
 
     @Test(description = "email is with empty field, name is valid")
     public void checkEmptyEmailValidName() {
-        String token1 = getToken(getEmail("testCreateUser"), getPassword("testCreateUser"));
+        String token1 = getTokenFor(getEmail("testCreateUser"), getPassword("testCreateUser"));
 
         Response response = given()
                 .when()
@@ -38,14 +38,14 @@ public class PutNegativeUsersMeUpdateTest extends BaseTestForPatch {
         Assert.assertEquals(response.then().extract()
                 .response().jsonPath().getString("email"), "[Это поле не может быть пустым.]");
 
-        passwordFor = test.get("password").getAsString();
+        setPasswordFor(test.getString("password"));
 
-        token = getToken(test.get("email").getAsString(), test.get("password").getAsString());
+        setToken(token1);
     }
 
     @Test(description = "email has 255 symbols, valid name")
     public void checkEmailWithALotOfSymbolsValidName() {
-        String token1 = getToken(getEmail("testCreateUser"), getPassword("testCreateUser"));
+        String token1 = getTokenFor(getEmail("testCreateUser"), getPassword("testCreateUser"));
 
         Response response = given()
                 .when()
@@ -56,14 +56,14 @@ public class PutNegativeUsersMeUpdateTest extends BaseTestForPatch {
 
         response.then().log().all().statusCode(400);
 
-        passwordFor = test.get("password").getAsString();
+        setPasswordFor(test.getString("password"));
 
-        token = getToken(test.get("email").getAsString(), test.get("password").getAsString());
+        setToken(token1);
     }
 
     @Test(description = "email doesn't have @, name is valid")
     public void checkEmailWithoutDogValidName() {
-        String token1 = getToken(getEmail("testCreateUser"), getPassword("testCreateUser"));
+        String token1 = getTokenFor(getEmail("testCreateUser"), getPassword("testCreateUser"));
 
         Response response = given()
                 .when()
@@ -77,14 +77,14 @@ public class PutNegativeUsersMeUpdateTest extends BaseTestForPatch {
         Assert.assertEquals(response.then().extract()
                 .response().jsonPath().getString("email"), "[Введите правильный адрес электронной почты.]");
 
-        passwordFor = test.get("password").getAsString();
+        setPasswordFor(test.getString("password"));
 
-        token = getToken(test.get("email").getAsString(), test.get("password").getAsString());
+        setToken(token1);
     }
 
     @Test(description = "email has '..' , name is valid")
     public void checkEmailWitsDotsValidName() {
-        String token1 = getToken(getEmail("testCreateUser"), getPassword("testCreateUser"));
+        String token1 = getTokenFor(getEmail("testCreateUser"), getPassword("testCreateUser"));
 
         Response response = given()
                 .when()
@@ -98,14 +98,14 @@ public class PutNegativeUsersMeUpdateTest extends BaseTestForPatch {
         Assert.assertEquals(response.then().extract()
                 .response().jsonPath().getString("email"), "[Введите правильный адрес электронной почты.]");
 
-        passwordFor = test.get("password").getAsString();
+        setPasswordFor(test.getString("password"));
 
-        token = getToken(test.get("email").getAsString(), test.get("password").getAsString());
+        setToken(token1);
     }
 
     @Test(description = "email starts from '.' , name is valid")
     public void checkEmailStartsFromDotValidName() {
-        String token1 = getToken(getEmail("testCreateUser"), getPassword("testCreateUser"));
+        String token1 = getTokenFor(getEmail("testCreateUser"), getPassword("testCreateUser"));
 
         Response response = given()
                 .when()
@@ -119,14 +119,14 @@ public class PutNegativeUsersMeUpdateTest extends BaseTestForPatch {
         Assert.assertEquals(response.then().extract()
                 .response().jsonPath().getString("email"), "[Введите правильный адрес электронной почты.]");
 
-        passwordFor = test.get("password").getAsString();
+        setPasswordFor(test.getString("password"));
 
-        token = getToken(test.get("email").getAsString(), test.get("password").getAsString());
+        setToken(token1);
     }
 
     @Test(description = "domain part in email starts from '.' , name is valid")
     public void checkDomainPartStartsFromDotValidName() {
-        String token1 = getToken(getEmail("testCreateUser"), getPassword("testCreateUser"));
+        String token1 = getTokenFor(getEmail("testCreateUser"), getPassword("testCreateUser"));
 
         Response response = given()
                 .when()
@@ -140,14 +140,14 @@ public class PutNegativeUsersMeUpdateTest extends BaseTestForPatch {
         Assert.assertEquals(response.then().extract()
                 .response().jsonPath().getString("email"), "[Введите правильный адрес электронной почты.]");
 
-        passwordFor = test.get("password").getAsString();
+        setPasswordFor(test.getString("password"));
 
-        token = getToken(test.get("email").getAsString(), test.get("password").getAsString());
+        setToken(token1);
     }
 
     @Test(description = "name part in email ends on '.' , name is valid")
     public void checkNamePartEndsOnDotValidName() {
-        String token1 = getToken(getEmail("testCreateUser"), getPassword("testCreateUser"));
+        String token1 = getTokenFor(getEmail("testCreateUser"), getPassword("testCreateUser"));
 
         Response response = given()
                 .when()
@@ -161,14 +161,14 @@ public class PutNegativeUsersMeUpdateTest extends BaseTestForPatch {
         Assert.assertEquals(response.then().extract()
                 .response().jsonPath().getString("email"), "[Введите правильный адрес электронной почты.]");
 
-        passwordFor = test.get("password").getAsString();
+        setPasswordFor(test.getString("password"));
 
-        token = getToken(test.get("email").getAsString(), test.get("password").getAsString());
+        setToken(token1);
     }
 
     @Test(description = "email is valid, name is empty")
     public void checkValidEmailNameIsEmpty() {
-        String token1 = getToken(getEmail("testCreateUser"), getPassword("testCreateUser"));
+        String token1 = getTokenFor(getEmail("testCreateUser"), getPassword("testCreateUser"));
 
         Response response = given()
                 .when()
@@ -182,14 +182,14 @@ public class PutNegativeUsersMeUpdateTest extends BaseTestForPatch {
         Assert.assertEquals(response.then().extract()
                 .response().jsonPath().getString("username"), "[Это поле не может быть пустым.]");
 
-        passwordFor = test.get("password").getAsString();
+        setPasswordFor(test.getString("password"));
 
-        token = getToken(test.get("email").getAsString(), test.get("password").getAsString());
+        setToken(token1);
     }
 
     @Test(description = "email is valid, name has 151 symbols")
     public void checkValidEmailNameWithALotOfSymbols() {
-        String token1 = getToken(getEmail("testCreateUser"), getPassword("testCreateUser"));
+        String token1 = getTokenFor(getEmail("testCreateUser"), getPassword("testCreateUser"));
 
         Response response = given()
                 .when()
@@ -203,14 +203,14 @@ public class PutNegativeUsersMeUpdateTest extends BaseTestForPatch {
         Assert.assertEquals(response.then().extract()
                 .response().jsonPath().getString("username"), "[Убедитесь, что это значение содержит не более 150 символов.]");
 
-        passwordFor = test.get("password").getAsString();
+        setPasswordFor(test.getString("password"));
 
-        token = getToken(test.get("email").getAsString(), test.get("password").getAsString());
+        setToken(token1);
     }
 
     @Test(description = "email is valid, name has special symbols")
     public void checkValidEmailNameHasSpecialSymbols() {
-        String token1 = getToken(getEmail("testCreateUser"), getPassword("testCreateUser"));
+        String token1 = getTokenFor(getEmail("testCreateUser"), getPassword("testCreateUser"));
 
         Response response = given()
                 .when()
@@ -224,11 +224,8 @@ public class PutNegativeUsersMeUpdateTest extends BaseTestForPatch {
         Assert.assertEquals(response.then().extract()
                 .response().jsonPath().getString("username"), "[Введите правильное имя пользователя. Оно может содержать только буквы, цифры и знаки @/./+/-/_.]");
 
-        passwordFor = test.get("password").getAsString();
+        setPasswordFor(test.getString("password"));
 
-        token = getToken(test.get("email").getAsString(), test.get("password").getAsString());
+        setToken(token1);
     }
 }
-
-
- */

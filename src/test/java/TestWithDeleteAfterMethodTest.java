@@ -1,16 +1,15 @@
-/**
-
 import basePage.BaseTestWithDelete;
-import com.google.gson.JsonObject;
+
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.json.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
 public class TestWithDeleteAfterMethodTest extends BaseTestWithDelete {
-    JsonObject user1 = parser("users").getAsJsonObject("user1"); // Lower case email
+    JSONObject user1 = parser("users").getJSONObject("user1"); // Lower case email
 
     @Test
     public void testWithDeleteAfterMethod() {
@@ -31,10 +30,8 @@ public class TestWithDeleteAfterMethodTest extends BaseTestWithDelete {
                 .response().jsonPath()
                 .getString("username"), "damavik");
 
-        passwordFor = user1.get("password").getAsString();
+        setPasswordFor(user1.getString("password"));
 
-        token = getToken(user1.get("email").getAsString(), user1.get("password").getAsString());
+        setToken(getTokenFor(user1.getString("email"), user1.getString("password")));
     }
 }
-
- **/

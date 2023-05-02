@@ -1,7 +1,8 @@
-/*import basePage.BaseTestForPatch;
-import com.google.gson.JsonObject;
+import basePage.BaseTestForPatch;
+
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.json.JSONObject;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
@@ -10,7 +11,7 @@ public class PostSetPasswordPositiveTest extends BaseTestForPatch {
 
     @Test(description = "Use password lowerCase letters only >=8 symbols")
     public void checkPasswordLowercase () {
-        String token1 = getToken(getEmail("testCreateUser"), getPassword("testCreateUser"));
+        String token1 = getTokenFor(getEmail("testCreateUser"), getPassword("testCreateUser"));
 
         Response response = given()
                 .when()
@@ -21,14 +22,14 @@ public class PostSetPasswordPositiveTest extends BaseTestForPatch {
 
         response.then().log().all().statusCode(204);
 
-        passwordFor = password1.get("new_password").getAsString();
+        setPasswordFor(password1.getString("new_password"));
 
-        token = getToken(test.get("email").getAsString(), password1.get("new_password").getAsString());
+        setToken(token1);
     }
 
     @Test(description = "Use password UpperCase letters only >=8 symbols")
     public void checkPasswordUppercase () {
-        String token1 = getToken(getEmail("testCreateUser"), getPassword("testCreateUser"));
+        String token1 = getTokenFor(getEmail("testCreateUser"), getPassword("testCreateUser"));
 
         Response response = given()
                 .when()
@@ -39,14 +40,14 @@ public class PostSetPasswordPositiveTest extends BaseTestForPatch {
 
         response.then().log().all().statusCode(204);
 
-        passwordFor = password2.get("new_password").getAsString();
+        setPasswordFor(password2.getString("new_password"));
 
-        token = getToken(test.get("email").getAsString(), password2.get("new_password").getAsString());
+        setToken(token1);
     }
 
     @Test(description = "Use password lowerCase and UpperCase letters only >=8 symbols")
     public void checkPasswordWithLowercaseAndUppercase () {
-        String token1 = getToken(getEmail("testCreateUser"), getPassword("testCreateUser"));
+        String token1 = getTokenFor(getEmail("testCreateUser"), getPassword("testCreateUser"));
 
         Response response = given()
                 .when()
@@ -57,14 +58,14 @@ public class PostSetPasswordPositiveTest extends BaseTestForPatch {
 
         response.then().log().all().statusCode(204);
 
-        passwordFor = password3.get("new_password").getAsString();
+        setPasswordFor(password3.getString("new_password"));
 
-        token = getToken(test.get("email").getAsString(), password3.get("new_password").getAsString());
+        setToken(token1);
     }
 
     @Test(description = "Use password letters and numbers >=8 symbols")
     public void checkPasswordWithLettersAndNumbers () {
-        String token1 = getToken(getEmail("testCreateUser"), getPassword("testCreateUser"));
+        String token1 = getTokenFor(getEmail("testCreateUser"), getPassword("testCreateUser"));
 
         Response response = given()
                 .when()
@@ -75,14 +76,14 @@ public class PostSetPasswordPositiveTest extends BaseTestForPatch {
 
         response.then().log().all().statusCode(204);
 
-        passwordFor = password4.get("new_password").getAsString();
+        setPasswordFor(password4.getString("new_password"));
 
-        token = getToken(test.get("email").getAsString(), password4.get("new_password").getAsString());
+        setToken(token1);
     }
 
     @Test(description = "Use password special symbols >= 8: ~ ! ? @ # $ % ^ & * _ - + ( ) [ ] { } > < /  |  ' . , : ;")
     public void checkPasswordWithSpecialSymbols () {
-        String token1 = getToken(getEmail("testCreateUser"), getPassword("testCreateUser"));
+        String token1 = getTokenFor(getEmail("testCreateUser"), getPassword("testCreateUser"));
 
         Response response = given()
                 .when()
@@ -93,18 +94,16 @@ public class PostSetPasswordPositiveTest extends BaseTestForPatch {
 
         response.then().log().all().statusCode(204);
 
-        passwordFor = password5.get("new_password").getAsString();
+        setPasswordFor(password5.getString("new_password"));
 
-        token = getToken(test.get("email").getAsString(), password5.get("new_password").getAsString());
+        setToken(token1);
     }
 
 
-    JsonObject test = parser("testCreateUser").getAsJsonObject();
-    JsonObject password1 = parser("passwordsForPostSetPasswordPositive").getAsJsonObject("password1");
-    JsonObject password2 = parser("passwordsForPostSetPasswordPositive").getAsJsonObject("password2");
-    JsonObject password3 = parser("passwordsForPostSetPasswordPositive").getAsJsonObject("password3");
-    JsonObject password4 = parser("passwordsForPostSetPasswordPositive").getAsJsonObject("password4");
-    JsonObject password5 = parser("passwordsForPostSetPasswordPositive").getAsJsonObject("password5");
+    JSONObject test = parser("testCreateUser");
+    JSONObject password1 = parser("passwordsForPostSetPasswordPositive").getJSONObject("password1");
+    JSONObject password2 = parser("passwordsForPostSetPasswordPositive").getJSONObject("password2");
+    JSONObject password3 = parser("passwordsForPostSetPasswordPositive").getJSONObject("password3");
+    JSONObject password4 = parser("passwordsForPostSetPasswordPositive").getJSONObject("password4");
+    JSONObject password5 = parser("passwordsForPostSetPasswordPositive").getJSONObject("password5");
 }
-
- */

@@ -3,11 +3,15 @@
 
 <suite name="API tests">
 
-    <test name="API">
+
+    <test name="API 2">
         <classes>
 
-            <class name="PostJwtCreateTest"></class>
+            <class name="PutUsersIdPositiveTest"></class>
+
         </classes>
     </test>
+
+
 
 </suite>

@@ -11,9 +11,31 @@
         </classes>
     </test>
 
+    <test name="Put users id tests">
+        <classes>
+            <class name="PutUsersIdNegativeTest"/>
+            <class name="PutUsersIdPositiveTest"/>
+        </classes>
+    </test>
+
+    <test name="Put users me update">
+        <classes>
+            <class name="PutNegativeUsersMeUpdateTest"/>
+            <class name="PutPositiveUsersMeUpdateTest"/>
+            <class name="PutPairwaiseTest"/>
+        </classes>
+    </test>
+
     <test name="Post JWT">
         <classes>
             <class name="PostJwtCreateTest"/>
+        </classes>
+    </test>
+
+    <test name="Post set password">
+        <classes>
+            <class name="PostSetPasswordNegativeTest"/>
+            <class name="PostSetPasswordPositiveTest"/>
         </classes>
     </test>
 
