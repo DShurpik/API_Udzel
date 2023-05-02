@@ -1,7 +1,8 @@
 import basePage.BaseTest;
-import com.google.gson.JsonObject;
+
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.json.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -9,9 +10,10 @@ import static io.restassured.RestAssured.given;
 
 public class NameNegativeTest extends BaseTest {
 
-    JsonObject user1 = parser("users_name_negative").getAsJsonObject("user1"); // empty field
-    JsonObject user2 = parser("users_name_negative").getAsJsonObject("user2"); // 151 symbol
-    JsonObject user3 = parser("users_name_negative").getAsJsonObject("user3"); // contains "*/#"
+    JSONObject user1 = parser("users_name_negative").getJSONObject("user1"); // empty field
+    JSONObject user2 = parser("users_name_negative").getJSONObject("user2"); // 151 symbol
+    JSONObject user3 = parser("users_name_negative").getJSONObject("user3"); // contains "#"
+
     @Test(description = "Empty field")
     public void createUserWithEmptyField() {
 
@@ -42,7 +44,7 @@ public class NameNegativeTest extends BaseTest {
                 .getString("username"), "[Убедитесь, что это значение содержит не более 150 символов.]");
     }
 
-    @Test(description = "contains */#")
+    @Test(description = "contains *")
     public void createUserWithSpecialSymbols() {
 
         Response response = given()
@@ -56,5 +58,4 @@ public class NameNegativeTest extends BaseTest {
                 .response().jsonPath()
                 .getString("username"), "[Введите правильное имя пользователя. Оно может содержать только буквы, цифры и знаки @/./+/-/_.]");
     }
-
 }

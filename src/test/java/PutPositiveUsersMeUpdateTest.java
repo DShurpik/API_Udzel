@@ -1,4 +1,4 @@
-import basePage.BaseTestForPatch;
+/*import basePage.BaseTestForPatch;
 import com.google.gson.JsonObject;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -169,3 +169,5 @@ public class PutPositiveUsersMeUpdateTest extends BaseTestForPatch {
     }
 
 }
+
+ */

@@ -1,8 +1,9 @@
 package basePage;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import io.restassured.RestAssured;
+import io.restassured.parsing.Parser;
 import io.restassured.response.Response;
+import org.json.JSONObject;
 import org.testng.annotations.BeforeTest;
 
 import java.io.IOException;
@@ -13,29 +14,28 @@ import static config.Config.*;
 import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
 
-public class BaseTest {
+public abstract class BaseTest {
 
     protected int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public static void disableWarning() {
+        System.err.close();
+        System.setErr(System.out);
+    }
 
     @BeforeTest
     public void precondition() {
         baseURI = BASE_URI;
-    }
-
-    public String getToken() {
-        String body = "{\n" +
-                "  \"email\": \"" + EMAIL + "\",\n" +
-                "  \"password\": \"" + PASSWORD + "\"\n" +
-                "}";
-
-        Response response = given()
-                .header("Content-Type", "application/json")
-                .body(body)
-                .post("jwt/create/");
-
-        response.then().statusCode(200);
-
-        return response.then().extract().response().jsonPath().getString("access");
+        RestAssured.defaultParser = Parser.JSON;
+        disableWarning();
     }
 
     public String getToken(String email, String password) {
@@ -54,19 +54,16 @@ public class BaseTest {
         return response.then().extract().response().jsonPath().getString("access");
     }
 
-    public JsonObject parser(String fileName) {
-        JsonObject jsonObject = new JsonParser()
-                .parse(getJson(fileName))
-                .getAsJsonObject();
-        return jsonObject;
+    public JSONObject parser(String fileName) {
+        return new JSONObject(getJson(fileName));
     }
 
     public String getEmail(String fileName) {
-        return parser(fileName).get("email").getAsString();
+        return parser(fileName).get("email").toString();
     }
 
     public String getPassword(String fileName) {
-        return parser(fileName).get("password").getAsString();
+        return parser(fileName).get("password").toString();
     }
 
     public String getJson(String fileName){

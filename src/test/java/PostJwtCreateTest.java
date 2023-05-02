@@ -1,7 +1,8 @@
 import basePage.BaseTest;
-import com.google.gson.JsonObject;
+
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.json.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -11,7 +12,7 @@ import static io.restassured.RestAssured.given;
 
 public class PostJwtCreateTest extends BaseTest {
 
-    JsonObject test = parser("testCreateUser").getAsJsonObject();
+    JSONObject test = parser("testCreateUser");
 
     @BeforeTest
     public void createUser() {
@@ -29,12 +30,12 @@ public class PostJwtCreateTest extends BaseTest {
     @AfterTest
     public void deleteUser() {
         String body = "{\n" +
-                "    \"current_password\" : \"" + test.get("password").getAsString() + "\"\n" +
+                "    \"current_password\" : \"" + test.getString("password") + "\"\n" +
                 "}";
 
         Response response = given()
                 .contentType(ContentType.JSON)
-                .header("Authorization", "Token " + getToken(test.get("email").getAsString(), test.get("password").getAsString()))
+                .header("Authorization", "Token " + getToken(test.getString("email"), test.getString("password")))
                 .body(body)
                 .when()
                 .delete("users/me/");
@@ -152,12 +153,11 @@ public class PostJwtCreateTest extends BaseTest {
 
 
 
-    JsonObject test1 = parser("postJwtCreate").getAsJsonObject("user1");
-    JsonObject test2 = parser("postJwtCreate").getAsJsonObject("user2");
-    JsonObject test3 = parser("postJwtCreate").getAsJsonObject("user3");
-    JsonObject test4 = parser("postJwtCreate").getAsJsonObject("user4");
-    JsonObject test5 = parser("postJwtCreate").getAsJsonObject("user5");
-    JsonObject test6 = parser("postJwtCreate").getAsJsonObject("user6");
-    JsonObject test7 = parser("postJwtCreate").getAsJsonObject("user7");
-
+    JSONObject test1 = parser("postJwtCreate").getJSONObject("user1");
+    JSONObject test2 = parser("postJwtCreate").getJSONObject("user2");
+    JSONObject test3 = parser("postJwtCreate").getJSONObject("user3");
+    JSONObject test4 = parser("postJwtCreate").getJSONObject("user4");
+    JSONObject test5 = parser("postJwtCreate").getJSONObject("user5");
+    JSONObject test6 = parser("postJwtCreate").getJSONObject("user6");
+    JSONObject test7 = parser("postJwtCreate").getJSONObject("user7");
 }

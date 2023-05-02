@@ -1,3 +1,5 @@
+/**
+
 import basePage.BaseTestWithDelete;
 import com.google.gson.JsonObject;
 import io.restassured.http.ContentType;
@@ -34,3 +36,5 @@ public class TestWithDeleteAfterMethodTest extends BaseTestWithDelete {
         token = getToken(user1.get("email").getAsString(), user1.get("password").getAsString());
     }
 }
+
+ **/

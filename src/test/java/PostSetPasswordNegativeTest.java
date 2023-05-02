@@ -1,7 +1,8 @@
 import basePage.BaseTestForPatch;
-import com.google.gson.JsonObject;
+
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.json.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -11,7 +12,7 @@ public class PostSetPasswordNegativeTest extends BaseTestForPatch {
 
     @Test(description = "Use password 7 symbols")
     public void checkPasswordLowercase () {
-        String token1 = getToken(getEmail("testCreateUser"), getPassword("testCreateUser"));
+        String token1 = getTokenFor(getEmail("testCreateUser"), getPassword("testCreateUser"));
 
         Response response = given()
                 .when()
@@ -25,14 +26,14 @@ public class PostSetPasswordNegativeTest extends BaseTestForPatch {
         Assert.assertEquals(response.then().extract()
                 .response().jsonPath().getString("new_password"), "[Введённый пароль слишком короткий. Он должен содержать как минимум 8 символов.]");
 
-        passwordFor = test.get("password").getAsString();
+        setPasswordFor(test.getString("password"));
 
-        token = getToken(test.get("email").getAsString(), test.get("password").getAsString());
+        setToken(token1);
     }
 
     @Test(description = "Use password equal to name + 1")
     public void checkPasswordEqualsToNameWithOne () {
-        String token1 = getToken(getEmail("testCreateUser"), getPassword("testCreateUser"));
+        String token1 = getTokenFor(getEmail("testCreateUser"), getPassword("testCreateUser"));
 
         Response response = given()
                 .when()
@@ -46,14 +47,14 @@ public class PostSetPasswordNegativeTest extends BaseTestForPatch {
         Assert.assertEquals(response.then().extract()
                 .response().jsonPath().getString("new_password"), "[Введённый пароль слишком похож на username.]");
 
-        passwordFor = test.get("password").getAsString();
+        setPasswordFor(test.getString("password"));
 
-        token = getToken(test.get("email").getAsString(), test.get("password").getAsString());
+        setToken(token1);
     }
 
     @Test(description = "Use password equals to email")
     public void checkPasswordEqualsToEmail () {
-        String token1 = getToken(getEmail("testCreateUser"), getPassword("testCreateUser"));
+        String token1 = getTokenFor(getEmail("testCreateUser"), getPassword("testCreateUser"));
 
         Response response = given()
                 .when()
@@ -67,14 +68,14 @@ public class PostSetPasswordNegativeTest extends BaseTestForPatch {
         Assert.assertEquals(response.then().extract()
                 .response().jsonPath().getString("new_password"), "[Введённый пароль слишком похож на email address.]");
 
-        passwordFor = test.get("password").getAsString();
+        setPasswordFor(test.getString("password"));
 
-        token = getToken(test.get("email").getAsString(), test.get("password").getAsString());
+        setToken(token1);
     }
 
     @Test(description = "Use password numbers only >= 8 symbols")
     public void checkPasswordOnlyNumbers () {
-        String token1 = getToken(getEmail("testCreateUser"), getPassword("testCreateUser"));
+        String token1 = getTokenFor(getEmail("testCreateUser"), getPassword("testCreateUser"));
 
         Response response = given()
                 .when()
@@ -88,14 +89,14 @@ public class PostSetPasswordNegativeTest extends BaseTestForPatch {
         Assert.assertEquals(response.then().extract()
                 .response().jsonPath().getString("new_password"), "[Введённый пароль состоит только из цифр.]");
 
-        passwordFor = test.get("password").getAsString();
+        setPasswordFor(test.getString("password"));
 
-        token = getToken(test.get("email").getAsString(), test.get("password").getAsString());
+        setToken(token1);
     }
 
     @Test(description = "Use popular password")
     public void checkPopularPassword () {
-        String token1 = getToken(getEmail("testCreateUser"), getPassword("testCreateUser"));
+        String token1 = getTokenFor(getEmail("testCreateUser"), getPassword("testCreateUser"));
 
         Response response = given()
                 .when()
@@ -109,15 +110,15 @@ public class PostSetPasswordNegativeTest extends BaseTestForPatch {
         Assert.assertEquals(response.then().extract()
                 .response().jsonPath().getString("new_password"), "[Введённый пароль слишком широко распространён.]");
 
-        passwordFor = test.get("password").getAsString();
+        setPasswordFor(test.getString("password"));
 
-        token = getToken(test.get("email").getAsString(), test.get("password").getAsString());
+        setToken(token1);
     }
 
-    JsonObject test = parser("testCreateUser").getAsJsonObject();
-    JsonObject password1 = parser("passwordsForPostSetPasswordNegative").getAsJsonObject("password1");
-    JsonObject password2 = parser("passwordsForPostSetPasswordNegative").getAsJsonObject("password2");
-    JsonObject password3 = parser("passwordsForPostSetPasswordNegative").getAsJsonObject("password3");
-    JsonObject password4 = parser("passwordsForPostSetPasswordNegative").getAsJsonObject("password4");
-    JsonObject password5 = parser("passwordsForPostSetPasswordNegative").getAsJsonObject("password5");
+    JSONObject test = parser("testCreateUser");
+    JSONObject password1 = parser("passwordsForPostSetPasswordNegative").getJSONObject("password1");
+    JSONObject password2 = parser("passwordsForPostSetPasswordNegative").getJSONObject("password2");
+    JSONObject password3 = parser("passwordsForPostSetPasswordNegative").getJSONObject("password3");
+    JSONObject password4 = parser("passwordsForPostSetPasswordNegative").getJSONObject("password4");
+    JSONObject password5 = parser("passwordsForPostSetPasswordNegative").getJSONObject("password5");
 }

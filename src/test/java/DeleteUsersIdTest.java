@@ -1,11 +1,11 @@
 import basePage.BaseTest;
-import com.google.gson.JsonObject;
+
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.json.JSONObject;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static config.Config.PASSWORD;
 import static io.restassured.RestAssured.given;
 
 public class DeleteUsersIdTest extends BaseTest {
@@ -18,9 +18,9 @@ public class DeleteUsersIdTest extends BaseTest {
                 .body(test.toString())
                 .post("users/");
 
-        response.then().log().all().statusCode(201);
+        response.then().statusCode(201);
 
-        id = response.then().extract().response().jsonPath().getInt("id");
+        setId(response.then().extract().response().jsonPath().getInt("id"));
 
         System.out.println("!!!     USER WAS CREATED IN BEFORE METHOD     !!!");
     }
@@ -29,10 +29,10 @@ public class DeleteUsersIdTest extends BaseTest {
 
     @Test
     public void deleteUserId() {
-        String token1 = getToken(test.get("email").getAsString(), test.get("password").getAsString());
+        String token1 = getToken(test.getString("email"), test.getString("password"));
 
         String body = "{\n" +
-                "    \"current_password\" : \"" + test.get("password").getAsString() + "\"\n" +
+                "    \"current_password\" : \"" + test.getString("password") + "\"\n" +
                 "}";
 
         Response response = given()
@@ -40,7 +40,7 @@ public class DeleteUsersIdTest extends BaseTest {
                 .header("Authorization", "Token " + token1)
                 .body(body)
                 .when()
-                .delete("users/" + id + "/");
+                .delete("users/" + getId() + "/");
 
         response.then().statusCode(204);
 
@@ -48,5 +48,6 @@ public class DeleteUsersIdTest extends BaseTest {
 
     }
 
-    JsonObject test = parser("testCreateUser").getAsJsonObject();
+    JSONObject test = parser("testCreateUser");
 }
+

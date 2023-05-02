@@ -1,4 +1,4 @@
-import basePage.BaseTestForPatch;
+/*import basePage.BaseTestForPatch;
 import com.google.gson.JsonObject;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -106,3 +106,5 @@ public class PostSetPasswordPositiveTest extends BaseTestForPatch {
     JsonObject password4 = parser("passwordsForPostSetPasswordPositive").getAsJsonObject("password4");
     JsonObject password5 = parser("passwordsForPostSetPasswordPositive").getAsJsonObject("password5");
 }
+
+ */

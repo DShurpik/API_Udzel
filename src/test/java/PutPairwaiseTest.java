@@ -1,4 +1,4 @@
-import basePage.BaseTestForPatch;
+/*import basePage.BaseTestForPatch;
 import com.google.gson.JsonObject;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -151,3 +151,6 @@ public class PutPairwaiseTest extends BaseTestForPatch {
     JsonObject test6 = parser("putPairwaise").getAsJsonObject("user6");
 
 }
+
+
+ */

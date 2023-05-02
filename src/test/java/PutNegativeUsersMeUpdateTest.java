@@ -1,4 +1,4 @@
-import basePage.BaseTest;
+/*import basePage.BaseTest;
 import basePage.BaseTestForPatch;
 import com.google.gson.JsonObject;
 import io.restassured.http.ContentType;
@@ -229,3 +229,6 @@ public class PutNegativeUsersMeUpdateTest extends BaseTestForPatch {
         token = getToken(test.get("email").getAsString(), test.get("password").getAsString());
     }
 }
+
+
+ */

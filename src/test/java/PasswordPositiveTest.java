@@ -1,7 +1,8 @@
 import basePage.BaseTestWithDelete;
-import com.google.gson.JsonObject;
+
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.json.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -9,11 +10,11 @@ import static io.restassured.RestAssured.given;
 
 public class PasswordPositiveTest extends BaseTestWithDelete {
 
-    JsonObject user1 = parser("users_password_positive").getAsJsonObject("user1"); // lowerCase letters only >=8 symbols
-    JsonObject user2 = parser("users_password_positive").getAsJsonObject("user2"); // UpperCase letters only >=8 symbols
-    JsonObject user3 = parser("users_password_positive").getAsJsonObject("user3"); // lowerCase and UpperCase letters only >=8 symbols
-    JsonObject user4 = parser("users_password_positive").getAsJsonObject("user4"); // letters and numbers >=8 symbols
-    JsonObject user5 = parser("users_password_positive").getAsJsonObject("user5"); // special symbols >= 8: ~ ! ? @ # $ % ^ & * _ - + ( ) [ ] { } > < / \ | " ' . , : ;
+    JSONObject user1 = parser("users_password_positive").getJSONObject("user1"); // lowerCase letters only >=8 symbols
+    JSONObject user2 = parser("users_password_positive").getJSONObject("user2"); // UpperCase letters only >=8 symbols
+    JSONObject user3 = parser("users_password_positive").getJSONObject("user3"); // lowerCase and UpperCase letters only >=8 symbols
+    JSONObject user4 = parser("users_password_positive").getJSONObject("user4"); // letters and numbers >=8 symbols
+    JSONObject user5 = parser("users_password_positive").getJSONObject("user5"); // special symbols >= 8: ~ ! ? @ # $ % ^ & * _ - + ( ) [ ] { } > < / \ | " ' . , : ;
 
     @Test(description = "lowerCase letters only >=8 symbols")
     public void createUserWithLowerCase() {
@@ -33,9 +34,9 @@ public class PasswordPositiveTest extends BaseTestWithDelete {
                 .response().jsonPath()
                 .getString("username"), "damavik");
 
-        passwordFor = user1.get("password").getAsString();
+        setPasswordFor(user1.getString("password"));
 
-        token = getToken(user1.get("email").getAsString(), user1.get("password").getAsString());
+        setToken(getTokenFor(user1.getString("email"), user1.getString("password")));
 
     }
 
@@ -57,9 +58,9 @@ public class PasswordPositiveTest extends BaseTestWithDelete {
                 .response().jsonPath()
                 .getString("username"), "damavik");
 
-        passwordFor = user2.get("password").getAsString();
+        setPasswordFor(user2.getString("password"));
 
-        token = getToken(user2.get("email").getAsString(), user2.get("password").getAsString());
+        setToken(getTokenFor(user2.getString("email"), user2.getString("password")));
 
     }
 
@@ -81,9 +82,9 @@ public class PasswordPositiveTest extends BaseTestWithDelete {
                 .response().jsonPath()
                 .getString("username"), "damavik");
 
-        passwordFor = user3.get("password").getAsString();
+        setPasswordFor(user3.getString("password"));
 
-        token = getToken(user3.get("email").getAsString(), user3.get("password").getAsString());
+        setToken(getTokenFor(user3.getString("email"), user3.getString("password")));
 
     }
 
@@ -105,9 +106,9 @@ public class PasswordPositiveTest extends BaseTestWithDelete {
                 .response().jsonPath()
                 .getString("username"), "damavik");
 
-        passwordFor = user4.get("password").getAsString();
+        setPasswordFor(user4.getString("password"));
 
-        token = getToken(user4.get("email").getAsString(), user4.get("password").getAsString());
+        setToken(getTokenFor(user4.getString("email"), user4.getString("password")));
 
     }
 
@@ -129,9 +130,9 @@ public class PasswordPositiveTest extends BaseTestWithDelete {
                 .response().jsonPath()
                 .getString("username"), "damavik");
 
-        passwordFor = user5.get("password").getAsString();
+        setPasswordFor(user5.getString("password"));
 
-        token = getToken(user5.get("email").getAsString(), user5.get("password").getAsString());
+        setToken(getTokenFor(user5.getString("email"), user5.getString("password")));
 
     }
 }

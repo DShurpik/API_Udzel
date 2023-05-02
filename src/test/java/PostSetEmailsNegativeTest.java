@@ -1,7 +1,8 @@
 import basePage.BaseTestForPatch;
-import com.google.gson.JsonObject;
+
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.json.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -11,7 +12,7 @@ public class PostSetEmailsNegativeTest extends BaseTestForPatch {
 
     @Test(description = "Set email with negative new email")
     public void checkNegativeEmail () {
-        String token1 = getToken(getEmail("testCreateUser"), getPassword("testCreateUser"));
+        String token1 = getTokenFor(getEmail("testCreateUser"), getPassword("testCreateUser"));
 
         Response response = given()
                 .when()
@@ -25,12 +26,10 @@ public class PostSetEmailsNegativeTest extends BaseTestForPatch {
         Assert.assertEquals(response.then().extract()
                 .response().jsonPath().getString("new_email"), "[Введите правильный адрес электронной почты.]");
 
-        passwordFor = test.get("password").getAsString();
+        setPasswordFor(userForTest.getString("password"));
 
-        token = getToken(test.get("email").getAsString(), test.get("password").getAsString());
+        setToken(token1);
     }
 
-    JsonObject test = parser("testCreateUser").getAsJsonObject();
-    JsonObject email1 = parser("emailsForPostSetEmailNegative").getAsJsonObject("email1");
-
+    JSONObject email1 = parser("emailsForPostSetEmailNegative").getJSONObject("email1");
 }

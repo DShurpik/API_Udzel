@@ -1,6 +1,7 @@
 import basePage.BaseTestForPatch;
-import com.google.gson.JsonObject;
+
 import io.restassured.response.Response;
+import org.json.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -9,13 +10,13 @@ import static io.restassured.RestAssured.given;
 public class GetUsersId extends BaseTestForPatch {
 
     @Test
-    public void getId() {
-        String token1 = getToken(test.get("email").getAsString(), test.get("password").getAsString());
+    public void getIdTest() {
+        String token1 = getTokenFor(test.get("email").toString(), test.get("password").toString());
 
         Response response = given()
                 .header("Authorization" , "Token " + token1)
                 .when()
-                .get("users/"+ id + "/");
+                .get("users/"+ getId() + "/");
 
         response.then().statusCode(200);
 
@@ -23,16 +24,16 @@ public class GetUsersId extends BaseTestForPatch {
                 .jsonPath().getString("email"), "dzmitry_shurpik@example.com");
 
         Assert.assertEquals(response.then().extract()
-                .jsonPath().getInt("id"), id);
+                .jsonPath().getInt("id"), getId());
 
         Assert.assertEquals(response.then().extract()
                 .jsonPath().getString("username"), "damavik");
 
-        passwordFor = test.get("password").getAsString();
+        setPasswordFor(test.get("password").toString());
 
-        token = getToken(test.get("email").getAsString(), test.get("password").getAsString());
+        setToken(token1);
     }
 
-    JsonObject test = parser("testCreateUser").getAsJsonObject();
+    JSONObject test = parser("testCreateUser");
 
 }

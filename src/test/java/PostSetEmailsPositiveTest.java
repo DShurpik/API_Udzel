@@ -1,7 +1,8 @@
 import basePage.BaseTestForPatch;
-import com.google.gson.JsonObject;
+
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.json.JSONObject;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
@@ -10,7 +11,7 @@ public class PostSetEmailsPositiveTest extends BaseTestForPatch {
 
     @Test(description = "Set email ")
     public void checkSetEmail () {
-        String token1 = getToken(getEmail("testCreateUser"), getPassword("testCreateUser"));
+        String token1 = getTokenFor(getEmail("testCreateUser"), getPassword("testCreateUser"));
 
         Response response = given()
                 .when()
@@ -21,11 +22,11 @@ public class PostSetEmailsPositiveTest extends BaseTestForPatch {
 
         response.then().statusCode(204);
 
-        passwordFor = email1.get("current_password").getAsString();
+        setPasswordFor(email1.getString("current_password"));
 
-        token = getToken(email1.get("new_email").getAsString(), email1.get("current_password").getAsString());
+        setToken(token1);
     }
 
-    JsonObject email1 = parser("emailsForPostSetEmailPositive").getAsJsonObject("email1");
+    JSONObject email1 = parser("emailsForPostSetEmailPositive").getJSONObject("email1");
 
 }

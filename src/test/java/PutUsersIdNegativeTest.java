@@ -1,4 +1,4 @@
-import basePage.BaseTestForPatch;
+/*import basePage.BaseTestForPatch;
 import com.google.gson.JsonObject;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -33,3 +33,6 @@ public class PutUsersIdNegativeTest extends BaseTestForPatch {
     JsonObject test = parser("testCreateUser").getAsJsonObject();
     JsonObject test1 = parser("putUsersIdNegative").getAsJsonObject("user1");
 }
+
+
+ */

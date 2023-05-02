@@ -1,7 +1,8 @@
 import basePage.BaseTestForPatch;
-import com.google.gson.JsonObject;
+
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.json.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -11,25 +12,26 @@ public class PatchUsersIdNegativeTest extends BaseTestForPatch {
 
     @Test
     public void test1() {
-        String token1 = getToken(test.get("email").getAsString(), test.get("password").getAsString());
+
+        String token1 = getTokenFor(test.getString("email"), test.getString("password"));
 
         Response response = given()
                 .when()
                 .header("Authorization" , "Token " + token1)
                 .contentType(ContentType.JSON)
                 .body(test1.toString())
-                .patch("users/"+ id + "/");
+                .patch("users/"+ getId() +"/");
 
         response.then().statusCode(400);
 
         Assert.assertEquals(response.then().extract()
                 .response().jsonPath().getString("username"), "[Введите правильное имя пользователя. Оно может содержать только буквы, цифры и знаки @/./+/-/_.]");
 
-        passwordFor = test.get("password").getAsString();
+        setPasswordFor(test.getString("password"));
 
-        token = getToken(test.get("email").getAsString(), test.get("password").getAsString());
+        setToken(token1);
     }
 
-    JsonObject test = parser("testCreateUser").getAsJsonObject();
-    JsonObject test1 = parser("patchUsersIdNegative").getAsJsonObject("user1");
+    JSONObject test = parser("testCreateUser");
+    JSONObject test1 = parser("patchUsersIdNegative").getJSONObject("user1");
 }

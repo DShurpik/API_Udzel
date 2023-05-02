@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="API tests">
+
+    <test name="API">
+        <classes>
+            <class name="DeleteUsersIdTest"/>
+            <class name="GetListUsersTest"/>
+            <class name="GetUsersId"/>
+        </classes>
+    </test>
+
+    <test name="Post JWT">
+        <classes>
+            <class name="PostJwtCreateTest"/>
+        </classes>
+    </test>
+
+    <test name="Post set emails positive and negative">
+        <classes>
+            <class name="PostSetEmailsPositiveTest"/>
+            <class name="PostSetEmailsNegativeTest"/>
+        </classes>
+    </test>
+
+    <test name="Patch users me positive and negative">
+        <classes>
+            <class name="PatchUsersMePositiveTest"/>
+            <class name="PatchUsersMeNegativeTest"/>
+        </classes>
+    </test>
+
+    <test name="Email positive and negative">
+        <classes>
+            <class name="EmailNegativeTest"/>
+            <class name="EmailPositiveTest"/>
+        </classes>
+    </test>
+
+    <test name="Name positive and negative">
+        <classes>
+            <class name="NamePositiveTest"/>
+            <class name="NameNegativeTest"/>
+        </classes>
+    </test>
+
+    <test name="Password positive and negative">
+        <classes>
+            <class name="PasswordPositiveTest"/>
+            <class name="PasswordNegativeTest"/>
+        </classes>
+    </test>
+
+    <test name="Patch users Id positive and negative">
+        <classes>
+            <class name="PatchUsersIdPositiveTest"/>
+            <class name="PatchUsersIdNegativeTest"/>
+        </classes>
+    </test>
+
+</suite>

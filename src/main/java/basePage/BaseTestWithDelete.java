@@ -1,9 +1,10 @@
 package basePage;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import io.restassured.parsing.Parser;
 import io.restassured.response.Response;
+import org.json.JSONObject;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 
@@ -15,14 +16,37 @@ import static config.Config.*;
 import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
 
-public class BaseTestWithDelete {
+public abstract class BaseTestWithDelete {
 
     protected String passwordFor;
     protected String token;
 
+    public String getPasswordFor() {
+        return passwordFor;
+    }
+
+    public void setPasswordFor(String passwordFor) {
+        this.passwordFor = passwordFor;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public static void disableWarning() {
+        System.err.close();
+        System.setErr(System.out);
+    }
+
     @BeforeTest
     public void precondition() {
         baseURI = BASE_URI;
+        RestAssured.defaultParser = Parser.JSON;
+        disableWarning();
     }
 
     @AfterMethod
@@ -33,7 +57,7 @@ public class BaseTestWithDelete {
 
         Response response = given()
                 .contentType(ContentType.JSON)
-                .header("Authorization", "Token " + token)
+                .header("Authorization", "Token " + getToken())
                 .body(body)
                 .when()
                 .delete("users/me/");
@@ -43,23 +67,7 @@ public class BaseTestWithDelete {
         response.then().statusCode(204);
     }
 
-    public String getToken() {
-        String body = "{\n" +
-                "  \"email\": \"" + EMAIL + "\",\n" +
-                "  \"password\": \"" + PASSWORD + "\"\n" +
-                "}";
-
-        Response response = given()
-                .header("Content-Type", "application/json")
-                .body(body)
-                .post("jwt/create/");
-
-        response.then().statusCode(200);
-
-        return response.then().extract().response().jsonPath().getString("access");
-    }
-
-    public String getToken(String email, String password) {
+    public String getTokenFor(String email, String password) {
         String body = "{\n" +
                 "  \"email\": \"" + email + "\",\n" +
                 "  \"password\": \"" + password + "\"\n" +
@@ -83,18 +91,15 @@ public class BaseTestWithDelete {
         }
     }
 
-    public JsonObject parser(String fileName) {
-        JsonObject jsonObject = new JsonParser()
-                .parse(getJson(fileName))
-                .getAsJsonObject();
-        return jsonObject;
+    public JSONObject parser(String fileName) {
+        return new JSONObject(getJson(fileName));
     }
 
     public String getEmail(String fileName) {
-        return parser(fileName).get("email").getAsString();
+        return parser(fileName).get("email").toString();
     }
 
     public String getPassword(String fileName) {
-        return parser(fileName).get("password").getAsString();
+        return parser(fileName).get("password").toString();
     }
 }

@@ -1,7 +1,8 @@
 import basePage.BaseTestForPatch;
-import com.google.gson.JsonObject;
+
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.json.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -9,23 +10,23 @@ import static io.restassured.RestAssured.given;
 
 public class PatchUsersMeNegativeTest extends BaseTestForPatch {
 
-    JsonObject test34 = parser("negative_for_patch").getAsJsonObject("test34");
-    JsonObject test35 = parser("negative_for_patch").getAsJsonObject("test35");
-    JsonObject test36 = parser("negative_for_patch").getAsJsonObject("test36");
-    JsonObject test37 = parser("negative_for_patch").getAsJsonObject("test37");
-    JsonObject test38 = parser("negative_for_patch").getAsJsonObject("test38");
-    JsonObject test39 = parser("negative_for_patch").getAsJsonObject("test39");
+    JSONObject test34 = parser("negative_for_patch").getJSONObject("test34");
+    JSONObject test35 = parser("negative_for_patch").getJSONObject("test35");
+    JSONObject test36 = parser("negative_for_patch").getJSONObject("test36");
+    JSONObject test37 = parser("negative_for_patch").getJSONObject("test37");
+    JSONObject test38 = parser("negative_for_patch").getJSONObject("test38");
+    JSONObject test39 = parser("negative_for_patch").getJSONObject("test39");
 
 
-    JsonObject test44 = parser("negative_for_patch").getAsJsonObject("test44");
-    JsonObject test45 = parser("negative_for_patch").getAsJsonObject("test45");
-    JsonObject test46 = parser("negative_for_patch").getAsJsonObject("test46");
+    JSONObject test44 = parser("negative_for_patch").getJSONObject("test44");
+    JSONObject test45 = parser("negative_for_patch").getJSONObject("test45");
+    JSONObject test46 = parser("negative_for_patch").getJSONObject("test46");
 
-    JsonObject tesst = parser("testCreateUser").getAsJsonObject();
+    JSONObject test = parser("testCreateUser");
 
     @Test(description = "empty field")
     public void emptyField () {
-        String token1 = getToken(getEmail("testCreateUser"), getPassword("testCreateUser"));
+        String token1 = getTokenFor(test.getString("email"), test.getString("password"));
 
         Response response = given()
                 .when()
@@ -34,19 +35,19 @@ public class PatchUsersMeNegativeTest extends BaseTestForPatch {
                 .body(test34.toString())
                 .patch("users/me/");
 
-        response.then().log().all().statusCode(400);
+        response.then().statusCode(400);
 
         Assert.assertEquals(response.then().extract()
                 .response().jsonPath().getString("email"), "[Это поле не может быть пустым.]");
 
-        passwordFor = tesst.get("password").getAsString();
+        setPasswordFor(test.getString("password"));
 
-        token = getToken(tesst.get("email").getAsString(), tesst.get("password").getAsString());
+        setToken(token1);
     }
 
     @Test(description = "255 symbols")
     public void moreSymbols () {
-        String token1 = getToken(getEmail("testCreateUser"), getPassword("testCreateUser"));
+        String token1 = getTokenFor(test.getString("email"), test.getString("password"));
 
         Response response = given()
                 .when()
@@ -55,16 +56,16 @@ public class PatchUsersMeNegativeTest extends BaseTestForPatch {
                 .body(test35.toString())
                 .patch("users/me/");
 
-        response.then().log().all().statusCode(500);
+        response.then().statusCode(500);
 
-        passwordFor = tesst.get("password").getAsString();
+        setPasswordFor(test.getString("password"));
 
-        token = getToken(tesst.get("email").getAsString(), tesst.get("password").getAsString());
+        setToken(token1);
     }
 
     @Test(description = "without @")
     public void withoutDog () {
-        String token1 = getToken(getEmail("testCreateUser"), getPassword("testCreateUser"));
+        String token1 = getTokenFor(test.getString("email"), test.getString("password"));
 
         Response response = given()
                 .when()
@@ -73,19 +74,19 @@ public class PatchUsersMeNegativeTest extends BaseTestForPatch {
                 .body(test36.toString())
                 .patch("users/me/");
 
-        response.then().log().all().statusCode(400);
+        response.then().statusCode(400);
 
         Assert.assertEquals(response.then().extract()
                 .response().jsonPath().getString("email"), "[Введите правильный адрес электронной почты.]");
 
-        passwordFor = tesst.get("password").getAsString();
+        setPasswordFor(test.getString("password"));
 
-        token = getToken(tesst.get("email").getAsString(), tesst.get("password").getAsString());
+        setToken(token1);
     }
 
     @Test(description = "contains ..")
     public void containsTwoDots () {
-        String token1 = getToken(getEmail("testCreateUser"), getPassword("testCreateUser"));
+        String token1 = getTokenFor(test.getString("email"), test.getString("password"));
 
         Response response = given()
                 .when()
@@ -94,19 +95,19 @@ public class PatchUsersMeNegativeTest extends BaseTestForPatch {
                 .body(test37.toString())
                 .patch("users/me/");
 
-        response.then().log().all().statusCode(400);
+        response.then().statusCode(400);
 
         Assert.assertEquals(response.then().extract()
                 .response().jsonPath().getString("email"), "[Введите правильный адрес электронной почты.]");
 
-        passwordFor = tesst.get("password").getAsString();
+        setPasswordFor(test.getString("password"));
 
-        token = getToken(tesst.get("email").getAsString(), tesst.get("password").getAsString());
+        setToken(token1);
     }
 
     @Test(description = "starts with .")
     public void startWithDot () {
-        String token1 = getToken(getEmail("testCreateUser"), getPassword("testCreateUser"));
+        String token1 = getTokenFor(test.getString("email"), test.getString("password"));
 
         Response response = given()
                 .when()
@@ -115,19 +116,19 @@ public class PatchUsersMeNegativeTest extends BaseTestForPatch {
                 .body(test38.toString())
                 .patch("users/me/");
 
-        response.then().log().all().statusCode(400);
+        response.then().statusCode(400);
 
         Assert.assertEquals(response.then().extract()
                 .response().jsonPath().getString("email"), "[Введите правильный адрес электронной почты.]");
 
-        passwordFor = tesst.get("password").getAsString();
+        setPasswordFor(test.getString("password"));
 
-        token = getToken(tesst.get("email").getAsString(), tesst.get("password").getAsString());
+        setToken(token1);
     }
 
     @Test(description = "domain part starts with .")
     public void domainStartsFromDot () {
-        String token1 = getToken(getEmail("testCreateUser"), getPassword("testCreateUser"));
+        String token1 = getTokenFor(test.getString("email"), test.getString("password"));
 
         Response response = given()
                 .when()
@@ -136,19 +137,19 @@ public class PatchUsersMeNegativeTest extends BaseTestForPatch {
                 .body(test39.toString())
                 .patch("users/me/");
 
-        response.then().log().all().statusCode(400);
+        response.then().statusCode(400);
 
         Assert.assertEquals(response.then().extract()
                 .response().jsonPath().getString("email"), "[Введите правильный адрес электронной почты.]");
 
-        passwordFor = tesst.get("password").getAsString();
+        setPasswordFor(test.getString("password"));
 
-        token = getToken(tesst.get("email").getAsString(), tesst.get("password").getAsString());
+        setToken(token1);
     }
 
     @Test(description = "empty field  Name")
     public void emptyFieldInName () {
-        String token1 = getToken(getEmail("testCreateUser"), getPassword("testCreateUser"));
+        String token1 = getTokenFor(test.getString("email"), test.getString("password"));
 
         Response response = given()
                 .when()
@@ -157,19 +158,19 @@ public class PatchUsersMeNegativeTest extends BaseTestForPatch {
                 .body(test44.toString())
                 .patch("users/me/");
 
-        response.then().log().all().statusCode(400);
+        response.then().statusCode(400);
 
         Assert.assertEquals(response.then().extract()
                 .response().jsonPath().getString("username"), "[Это поле не может быть пустым.]");
 
-        passwordFor = tesst.get("password").getAsString();
+        setPasswordFor(test.getString("password"));
 
-        token = getToken(tesst.get("email").getAsString(), tesst.get("password").getAsString());
+        setToken(token1);
     }
 
     @Test(description = "151 symbol")
     public void moreSymbolsThan151 () {
-        String token1 = getToken(getEmail("testCreateUser"), getPassword("testCreateUser"));
+        String token1 = getTokenFor(test.getString("email"), test.getString("password"));
 
         Response response = given()
                 .when()
@@ -178,19 +179,19 @@ public class PatchUsersMeNegativeTest extends BaseTestForPatch {
                 .body(test45.toString())
                 .patch("users/me/");
 
-        response.then().log().all().statusCode(400);
+        response.then().statusCode(400);
 
         Assert.assertEquals(response.then().extract()
                 .response().jsonPath().getString("username"), "[Убедитесь, что это значение содержит не более 150 символов.]");
 
-        passwordFor = tesst.get("password").getAsString();
+        setPasswordFor(test.getString("password"));
 
-        token = getToken(tesst.get("email").getAsString(), tesst.get("password").getAsString());
+        setToken(token1);
     }
 
-    @Test(description = "contains */#  Name")
+    @Test(description = "contains *#  Name")
     public void containsNumbers () {
-        String token1 = getToken(getEmail("testCreateUser"), getPassword("testCreateUser"));
+        String token1 = getTokenFor(test.getString("email"), test.getString("password"));
 
         Response response = given()
                 .when()
@@ -199,13 +200,13 @@ public class PatchUsersMeNegativeTest extends BaseTestForPatch {
                 .body(test46.toString())
                 .patch("users/me/");
 
-        response.then().log().all().statusCode(400);
+        response.then().statusCode(400);
 
         Assert.assertEquals(response.then().extract()
                 .response().jsonPath().getString("username"), "[Введите правильное имя пользователя. Оно может содержать только буквы, цифры и знаки @/./+/-/_.]");
 
-        passwordFor = tesst.get("password").getAsString();
+        setPasswordFor(test.getString("password"));
 
-        token = getToken(tesst.get("email").getAsString(), tesst.get("password").getAsString());
+        setToken(token1);
     }
 }

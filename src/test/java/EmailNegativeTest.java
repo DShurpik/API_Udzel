@@ -1,7 +1,8 @@
 import basePage.BaseTest;
-import com.google.gson.JsonObject;
+
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.json.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -9,12 +10,12 @@ import static io.restassured.RestAssured.given;
 
 public class EmailNegativeTest extends BaseTest {
 
-    JsonObject user1 = parser("users_email_negative").getAsJsonObject("user1"); // empty field
-    JsonObject user2 = parser("users_email_negative").getAsJsonObject("user2"); // 255 symbols
-    JsonObject user3 = parser("users_email_negative").getAsJsonObject("user3"); // without @
-    JsonObject user4 = parser("users_email_negative").getAsJsonObject("user4"); // With ..
-    JsonObject user5 = parser("users_email_negative").getAsJsonObject("user5"); // Start from .
-    JsonObject user6 = parser("users_email_negative").getAsJsonObject("user6"); // Domain name starts from .
+    JSONObject user1 = parser("users_email_negative").getJSONObject("user1"); // empty field
+    JSONObject user2 = parser("users_email_negative").getJSONObject("user2"); // 255 symbols
+    JSONObject user3 = parser("users_email_negative").getJSONObject("user3"); // without @
+    JSONObject user4 = parser("users_email_negative").getJSONObject("user4"); // With ..
+    JSONObject user5 = parser("users_email_negative").getJSONObject("user5"); // Start from .
+    JSONObject user6 = parser("users_email_negative").getJSONObject("user6"); // Domain name starts from .
 
     @Test(description = "with empty field email")
     public void createUserWithEmptyFieldEmail() {
@@ -29,8 +30,6 @@ public class EmailNegativeTest extends BaseTest {
         Assert.assertEquals(response.then().extract()
                 .response().jsonPath()
                 .getString("email"), "[Это поле не может быть пустым.]");
-
-
     }
 
     @Test(description = "use 255 symbols in email")
@@ -46,7 +45,6 @@ public class EmailNegativeTest extends BaseTest {
         Assert.assertEquals(response.then().extract()
                 .response().jsonPath()
                 .getString("email"), "[Убедитесь, что это значение содержит не более 254 символов.]");
-
     }
 
     @Test(description = "Without @")
@@ -62,7 +60,6 @@ public class EmailNegativeTest extends BaseTest {
         Assert.assertEquals(response.then().extract()
                 .response().jsonPath()
                 .getString("email"), "[Введите правильный адрес электронной почты.]");
-
     }
 
     @Test(description = "With ..")

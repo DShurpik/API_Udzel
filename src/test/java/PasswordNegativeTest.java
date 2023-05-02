@@ -1,7 +1,8 @@
 import basePage.BaseTest;
-import com.google.gson.JsonObject;
+
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.json.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -9,11 +10,11 @@ import static io.restassured.RestAssured.given;
 
 public class PasswordNegativeTest extends BaseTest {
 
-    JsonObject user1 = parser("users_password_negative").getAsJsonObject("user1"); // 7 symbols
-    JsonObject user2 = parser("users_password_negative").getAsJsonObject("user2"); // name + 1
-    JsonObject user3 = parser("users_password_negative").getAsJsonObject("user3"); // equal to email
-    JsonObject user4 = parser("users_password_negative").getAsJsonObject("user4"); // numbers only >= 8 symbols
-    JsonObject user5 = parser("users_password_negative").getAsJsonObject("user5"); // qwerty
+    JSONObject user1 = parser("users_password_negative").getJSONObject("user1"); // 7 symbols
+    JSONObject user2 = parser("users_password_negative").getJSONObject("user2"); // name + 1
+    JSONObject user3 = parser("users_password_negative").getJSONObject("user3"); // equal to email
+    JSONObject user4 = parser("users_password_negative").getJSONObject("user4"); // numbers only >= 8 symbols
+    JSONObject user5 = parser("users_password_negative").getJSONObject("user5"); // qwerty
 
     @Test(description = "7 symbols")
     public void createUserWithSymbols() {
@@ -89,6 +90,4 @@ public class PasswordNegativeTest extends BaseTest {
                 .response().jsonPath()
                 .getString("password"), "[Введённый пароль слишком широко распространён.]");
     }
-
-
 }

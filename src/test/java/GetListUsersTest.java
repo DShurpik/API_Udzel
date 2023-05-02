@@ -18,12 +18,11 @@ public class GetListUsersTest extends BaseTest {
                 .when()
                 .get("users/");
 
-        response.then().log().all().statusCode(200);
+        response.then().statusCode(200);
 
         List<?> users = response.then().extract().jsonPath().getList(".", User.class);
 
         Assert.assertTrue(users.size() > 0,
                 "Don't get users list");
     }
-
 }

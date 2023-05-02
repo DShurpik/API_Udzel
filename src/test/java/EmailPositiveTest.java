@@ -1,7 +1,8 @@
 import basePage.BaseTestWithDelete;
-import com.google.gson.JsonObject;
+
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.json.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -9,12 +10,12 @@ import static io.restassured.RestAssured.given;
 
 public class EmailPositiveTest extends BaseTestWithDelete {
 
-    JsonObject user1 = parser("users_email_positive").getAsJsonObject("user1"); // Lower case email
-    JsonObject user2 = parser("users_email_positive").getAsJsonObject("user2"); // Lower and Upper case email
-    JsonObject user3 = parser("users_email_positive").getAsJsonObject("user3"); // Starting with number
-    JsonObject user4 = parser("users_email_positive").getAsJsonObject("user4"); // With several dots, not in a row
-    JsonObject user5 = parser("users_email_positive").getAsJsonObject("user5"); // With several dots in domain part
-    JsonObject user6 = parser("users_email_positive").getAsJsonObject("user6"); // With "-" in name part
+    JSONObject user1 = parser("users_email_positive").getJSONObject("user1"); // Lower case email
+    JSONObject user2 = parser("users_email_positive").getJSONObject("user2"); // Lower and Upper case email
+    JSONObject user3 = parser("users_email_positive").getJSONObject("user3"); // Starting with number
+    JSONObject user4 = parser("users_email_positive").getJSONObject("user4"); // With several dots, not in a row
+    JSONObject user5 = parser("users_email_positive").getJSONObject("user5"); // With several dots in domain part
+    JSONObject user6 = parser("users_email_positive").getJSONObject("user6"); // With "-" in name part
 
     @Test(description = "with lower case email")
     public void createUserWithLowerCase() {
@@ -34,9 +35,9 @@ public class EmailPositiveTest extends BaseTestWithDelete {
                 .response().jsonPath()
                 .getString("username"), "damavik");
 
-        passwordFor = user1.get("password").getAsString();
+        setPasswordFor(user1.getString("password"));
 
-        token = getToken(user1.get("email").getAsString(), user1.get("password").getAsString());
+        setToken(getTokenFor(user1.getString("email"), user1.getString("password")));
 
     }
 
@@ -58,9 +59,9 @@ public class EmailPositiveTest extends BaseTestWithDelete {
                 .response().jsonPath()
                 .getString("username"), "damavik");
 
-        passwordFor = user2.get("password").getAsString();
+        setPasswordFor(user2.getString("password"));
 
-        token = getToken(user2.get("email").getAsString(), user2.get("password").getAsString());
+        setToken(getTokenFor(user2.getString("email"), user2.getString("password")));
     }
 
     @Test(description = "With number")
@@ -81,9 +82,9 @@ public class EmailPositiveTest extends BaseTestWithDelete {
                 .response().jsonPath()
                 .getString("username"), "damavik");
 
-        passwordFor = user3.get("password").getAsString();
+        setPasswordFor(user3.getString("password"));
 
-        token = getToken(user3.get("email").getAsString(), user3.get("password").getAsString());
+        setToken(getTokenFor(user3.getString("email"), user3.getString("password")));
     }
 
     @Test(description = "With several dots in email name part, not in a row")
@@ -104,9 +105,9 @@ public class EmailPositiveTest extends BaseTestWithDelete {
                 .response().jsonPath()
                 .getString("username"), "damavik");
 
-        passwordFor = user4.get("password").getAsString();
+        setPasswordFor(user4.getString("password"));
 
-        token = getToken(user4.get("email").getAsString(), user4.get("password").getAsString());
+        setToken(getTokenFor(user4.getString("email"), user4.getString("password")));
     }
 
     @Test(description = "With several dots in domain part, not in a row")
@@ -127,9 +128,9 @@ public class EmailPositiveTest extends BaseTestWithDelete {
                 .response().jsonPath()
                 .getString("username"), "damavik");
 
-        passwordFor = user5.get("password").getAsString();
+        setPasswordFor(user5.getString("password"));
 
-        token = getToken(user5.get("email").getAsString(), user5.get("password").getAsString());
+        setToken(getTokenFor(user5.getString("email"), user5.getString("password")));
     }
 
     @Test(description = "with '-' in name part")
@@ -150,8 +151,8 @@ public class EmailPositiveTest extends BaseTestWithDelete {
                 .response().jsonPath()
                 .getString("username"), "damavik");
 
-        passwordFor = user6.get("password").getAsString();
+        setPasswordFor(user6.getString("password"));
 
-        token = getToken(user6.get("email").getAsString(), user6.get("password").getAsString());
+        setToken(getTokenFor(user6.getString("email"), user6.getString("password")));
     }
 }
