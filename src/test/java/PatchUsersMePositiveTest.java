@@ -23,6 +23,7 @@ public class PatchUsersMePositiveTest extends BaseTestForPatch {
     JSONObject test46 = parser("positive_for_patch").getJSONObject("test46");
     JSONObject test47 = parser("positive_for_patch").getJSONObject("test47");
     JSONObject test48 = parser("positive_for_patch").getJSONObject("test48");
+    JSONObject test49 = parser("positive_for_patch").getJSONObject("test49");
 
     JSONObject test = parser("testCreateUser");
 
@@ -263,6 +264,28 @@ public class PatchUsersMePositiveTest extends BaseTestForPatch {
 
         Assert.assertEquals(response.then().extract()
                 .response().jsonPath().getString("username"), "dzmitry_shurpik@example.com");
+
+        setPasswordFor(test.getString("password"));
+
+        setToken(getTokenFor(response.then().extract().response().jsonPath().getString("email"),
+                test.getString("password")));
+    }
+
+    @Test(description = "Patch date of birth with valid date")
+    public void patchDateOfBirthValid() {
+        String token1 = getTokenFor(test.getString("email"), test.getString("password"));
+
+        Response response = given()
+                .when()
+                .header("Authorization" , "Token " + token1)
+                .contentType(ContentType.JSON)
+                .body(test49.toString())
+                .patch("users/me/");
+
+        response.then().log().all().statusCode(200);
+
+        Assert.assertEquals(response.then().extract()
+                .response().jsonPath().getString("date_birth"), "1990-01-20");
 
         setPasswordFor(test.getString("password"));
 

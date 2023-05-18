@@ -122,7 +122,7 @@ public class PutPairwaiseTest extends BaseTestForPatch {
         setToken(token1);
     }
 
-    @Test(description = "invalid email, empty field name")
+    @Test(description = "empty email, invalid field name")
     public void testValidNameEmptyEmail() {
         String token1 = getTokenFor(getEmail("testCreateUser"), getPassword("testCreateUser"));
 

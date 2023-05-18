@@ -7,7 +7,7 @@
     <test name="API 2">
         <classes>
 
-            <class name="PutUsersIdPositiveTest"></class>
+            <class name="PostJwtCreateTest"></class>
 
         </classes>
     </test>

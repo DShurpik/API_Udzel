@@ -71,6 +71,7 @@ public abstract class BaseTestForPatch {
         response.then().statusCode(201);
 
         setId(response.then().extract().response().jsonPath().getInt("id"));
+        id = response.then().extract().response().jsonPath().getInt("id");
 
         System.out.println("!!!     USER WAS CREATED IN BEFORE METHOD     !!!  ");
     }

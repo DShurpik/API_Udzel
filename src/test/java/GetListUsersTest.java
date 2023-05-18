@@ -14,7 +14,9 @@ public class GetListUsersTest extends BaseTest {
     public void getUsersList(){
 
         Response response = given()
-                .header("Authorization", "Token " + getToken("elena.kuzheleva.exlab@gmail.com", "qwertyQ1_"))
+                //.header("Authorization", "Token " + getToken("elena.kuzheleva.exlab@gmail.com", "qwertyQ1_"))
+                .queryParam(getToken("elena.kuzheleva.exlab@gmail.com", "qwertyQ1_"))
+                //.queryParam()
                 .when()
                 .get("users/");
 

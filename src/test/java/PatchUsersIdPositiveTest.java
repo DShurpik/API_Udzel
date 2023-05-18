@@ -12,7 +12,7 @@ public class PatchUsersIdPositiveTest extends BaseTestForPatch {
 
     @Test
     public void test1 () {
-        String token1 = getTokenFor(test.getString("email"), test.getString("password"));
+        String token1 = getTokenFor(userForTest.getString("email"), userForTest.getString("password"));
 
         Response response = given()
                 .when()
@@ -32,13 +32,13 @@ public class PatchUsersIdPositiveTest extends BaseTestForPatch {
         Assert.assertEquals(response.then().extract()
                 .response().jsonPath().getString("username"), "kkjj");
 
-        setPasswordFor(test.getString("password"));
+        setPasswordFor(userForTest.getString("password"));
 
         setToken(token1);
 
 
     }
 
-    JSONObject test = parser("testCreateUser");
+    //JSONObject test = parser("testCreateUser");
     JSONObject test1 = parser("patchUsersIdPositive").getJSONObject("user1");
 }
